@@ -1,4 +1,4 @@
-package com.proceedto15.wb.ui.dashboard
+package com.proceedto15.wb.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.proceedto15.wb.R
-import com.proceedto15.wb.databinding.FragmentDashboardBinding
+import com.proceedto15.wb.databinding.FragmentHomeBinding
 
-class DashboardFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,16 +24,12 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        val textView: TextView = binding.textHome
+        textView.text = "This is home Fragment"
         return root
     }
 
