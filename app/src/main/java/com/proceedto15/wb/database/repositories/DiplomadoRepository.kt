@@ -1,4 +1,10 @@
 package com.proceedto15.wb.database.repositories
 
-class DiplomadoRepository {
+import com.proceedto15.wb.database.daos.DiplomadoDAO
+import com.proceedto15.wb.database.daos.ImpartidorDAO
+
+class DiplomadoRepository (
+    private val ImpartidorDAO: ImpartidorDAO,
+    private val DiplomadoDAO: DiplomadoDAO) {
+
 }
