@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey
 data class Empleado (
     @PrimaryKey
     val idEmpleado: Int,
+    val idUsuario: Int,
     val nombre: String,
-    val apellido: String
+    val apellido: String,
+    val tipo_empleado: Boolean
 )

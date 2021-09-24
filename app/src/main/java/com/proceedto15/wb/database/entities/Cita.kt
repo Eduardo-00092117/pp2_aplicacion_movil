@@ -8,7 +8,6 @@ data class Cita (
     @PrimaryKey
     val idCita: Int,
     val idCliente: Int,
-    val idEmpleado: Int,
     val fecha: String,
-    val hora_inicio: String
+    val hora: String
 )
