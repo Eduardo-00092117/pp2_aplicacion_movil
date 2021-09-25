@@ -1,5 +1,6 @@
 package com.proceedto15.wb.database.repositories
 
+import androidx.annotation.WorkerThread
 import com.proceedto15.wb.database.daos.*
 
 class OrdenRepository (
@@ -10,4 +11,6 @@ class OrdenRepository (
     private val CategoriaProductoDAO: CategoriaProductoDAO,
     private val MarcaDAO: MarcaDAO,
     private val HistorialVentaDAO: HistorialVentaDAO) {
+
+
 }
