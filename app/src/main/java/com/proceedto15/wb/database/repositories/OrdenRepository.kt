@@ -22,44 +22,38 @@ class OrdenRepository (
     val allMarca: LiveData<List<Marca>> = MarcaDAO.getAllMarca()
     val allHistorialVenta: LiveData<List<HistorialVenta>> = HistorialVentaDAO.getAllHistorialVenta()
 
-    //Inserts
+    // INSERTS
 
     @WorkerThread
     suspend fun insertPago(pago: Pago){
         PagoDAO.insert(pago)
     }
-
     @WorkerThread
     suspend fun insertOrden(orden: Orden){
         OrdenDAO.insert(orden)
     }
-
     @WorkerThread
     suspend fun insertOrdenDetalle(ordenDetalle: OrdenDetalle){
         OrdenDetalleDAO.insert(ordenDetalle)
     }
-
     @WorkerThread
     suspend fun insertProducto(producto: Producto){
         ProductoDAO.insert(producto)
     }
-
     @WorkerThread
     suspend fun insertCategoriaProducto(categoriaProducto: CategoriaProducto){
         CategoriaProductoDAO.insert(categoriaProducto)
     }
-
     @WorkerThread
     suspend fun insertMarca(marca: Marca){
         MarcaDAO.insert(marca)
     }
-
     @WorkerThread
     suspend fun insertHistorialVenta(historialVenta: HistorialVenta){
         HistorialVentaDAO.insert(historialVenta)
     }
 
-    //GET
+    // GETs
 
     fun getPago(id: Int) = PagoDAO.getPago(id)
 
@@ -75,38 +69,32 @@ class OrdenRepository (
 
     fun getHistorialVenta(id: Int) = HistorialVentaDAO.getHistorialVenta(id)
 
-    //Delete
+    // NukeTables
 
     @WorkerThread
     suspend fun nukePago(){
         return PagoDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeOrden(){
         return OrdenDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeOrdenDetalle(){
         return OrdenDetalleDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeProducto(){
         return ProductoDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeCategoriaProducto(){
         return CategoriaProductoDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeMarca(){
         return MarcaDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeHistorialVenta(){
         return HistorialVentaDAO.nukeTable()

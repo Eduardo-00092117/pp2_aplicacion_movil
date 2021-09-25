@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.proceedto15.wb.database.RoomDB
 import com.proceedto15.wb.database.entities.*
 import com.proceedto15.wb.database.repositories.CitaRepository
-import com.proceedto15.wb.database.repositories.OrdenRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CitaViewModel(private val app: Application) : AndroidViewModel(app){
+
     private val repository: CitaRepository
     val allCita: LiveData<List<Cita>>
     val allCitaXServicio: LiveData<List<CitaXServicio>>
@@ -32,7 +32,17 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
         val empleadoDAO = RoomDB.getDatabase(app).empleadoDAO()
         val empleadoXServicioDAO = RoomDB.getDatabase(app).empleadoXServicioDAO()
 
-        repository = CitaRepository(citaDAO, citaXServicioDAO, servicioDAO, categoriaServicioDAO, clienteDAO, usuarioDAO, empleadoDAO, empleadoXServicioDAO)
+        repository = CitaRepository(
+            citaDAO,
+            citaXServicioDAO,
+            servicioDAO,
+            categoriaServicioDAO,
+            clienteDAO,
+            usuarioDAO,
+            empleadoDAO,
+            empleadoXServicioDAO
+        )
+
         allCita = repository.allCita
         allCitaXServicio = repository.allCitaXServicio
         allServicio = repository.allServicio
@@ -43,7 +53,8 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
         allEmpleadoXServicio = repository.allEmpleadoXServicio
     }
 
-    //Inserts
+    // INSERTS
+
     fun insertCita(cita: Cita) = viewModelScope.launch(Dispatchers.IO){
         repository.insertCita(cita)
     }
@@ -56,8 +67,7 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
     fun insertCategoriaServicio(categoriaServicio: CategoriaServicio) = viewModelScope.launch(Dispatchers.IO){
         repository.insertCategoriaServicio(categoriaServicio)
     }
-    fun insertCliente(cliente: Cliente) = viewModelScope.launch(
-        Dispatchers.IO){
+    fun insertCliente(cliente: Cliente) = viewModelScope.launch(Dispatchers.IO){
         repository.insertCliente(cliente)
     }
     fun insertUsuario(usuario: Usuario) = viewModelScope.launch(Dispatchers.IO){
@@ -70,8 +80,7 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
         repository.insertEmpleadoXServicio(empleadoXServicio)
     }
 
-
-    //GET
+    // GETs
 
     fun getCita(id: Int) = repository.getCita(id)
 
@@ -89,7 +98,7 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
 
     fun getEmpleadoXServicio(id: Int) = repository.getEmpleadoXServicio(id)
 
-    //Delete
+    // NukeTables
 
     private suspend fun nukeCita() = repository.nukeCita()
 

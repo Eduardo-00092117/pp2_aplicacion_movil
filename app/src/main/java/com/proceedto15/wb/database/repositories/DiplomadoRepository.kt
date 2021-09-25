@@ -14,7 +14,7 @@ class DiplomadoRepository (
     val allImpartidor: LiveData<List<Impartidor>> = ImpartidorDAO.getAllImpartidor()
     val allDiplomado: LiveData<List<Diplomado>> = DiplomadoDAO.getAllDiplomado()
 
-    //Inserts
+    // INSERTS
 
     @WorkerThread
     suspend fun insertImpartidor(impartidor: Impartidor){
@@ -25,24 +25,20 @@ class DiplomadoRepository (
         DiplomadoDAO.insert(diplomado)
     }
 
-    //GETs
+    // GETs
 
     fun getImpartidor(id: Int) = ImpartidorDAO.getImpartidor(id)
+
     fun getDiplomado(id: Int) = DiplomadoDAO.getDiplomado(id)
 
-
-    //Delete
+    // NukeTables
 
     @WorkerThread
     suspend fun nukeImpartidor(){
         return ImpartidorDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeDiplomado(){
         return DiplomadoDAO.nukeTable()
     }
-
-
-
 }

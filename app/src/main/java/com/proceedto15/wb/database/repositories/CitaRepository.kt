@@ -83,37 +83,30 @@ class CitaRepository (
     suspend fun nukeCita(){
         return citaDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeCitaXServicio(){
         return citaXServicioDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeServicio(){
         return servicioDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeCategoriaServicio(){
         return categoriaServicioDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeCliente(){
         return clienteDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeUsuario(){
         return usuarioDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeEmpleado(){
         return empleadoDAO.nukeTable()
     }
-
     @WorkerThread
     suspend fun nukeEmpleadoXServicio(){
         return empleadoXServicioDAO.nukeTable()
