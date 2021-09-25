@@ -31,7 +31,7 @@ class CitaRepository (
         citaDAO.insert(cita)
     }
     @WorkerThread
-    suspend fun inserCitaXServicio(citaXServicio: CitaXServicio){
+    suspend fun insertCitaXServicio(citaXServicio: CitaXServicio){
         citaXServicioDAO.insert(citaXServicio)
     }
     @WorkerThread

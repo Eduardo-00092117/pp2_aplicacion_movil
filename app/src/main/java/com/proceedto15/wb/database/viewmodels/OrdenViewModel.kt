@@ -11,7 +11,7 @@ import com.proceedto15.wb.database.repositories.OrdenRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class OrdenViewModel(private val app: Application) : AndroidViewModel(app) {
+class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
     private val repository: OrdenRepository
     val allPago: LiveData<List<Pago>>
     val allOrden: LiveData<List<Orden>>
@@ -95,5 +95,5 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app) {
     private suspend fun nukeMarca() = repository.nukeMarca()
 
     private suspend fun nukeHistorialVenta() = repository.nukeHistorialVenta()
-    
+
 }
