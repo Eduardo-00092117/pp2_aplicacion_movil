@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.proceedto15.wb.database.entities.CategoriaProducto
 import com.proceedto15.wb.database.entities.Cita
 
 @Dao
 interface CitaDAO {
 
     @Insert
-    suspend fun insert(citaDAO: CitaDAO)
+    suspend fun insert(cita: Cita)
 
     @Query("SELECT * FROM cita")
     fun getAllCita() : LiveData<List<Cita>>

@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.proceedto15.wb.database.entities.Cliente
 import com.proceedto15.wb.database.entities.HistorialVenta
 
 @Dao
 interface HistorialVentaDAO {
 
     @Insert
-    suspend fun insert(historialVentaDAO: HistorialVentaDAO)
+    suspend fun insert(historialVenta: HistorialVenta)
 
     @Query("SELECT * FROM historial_venta")
     fun getAllHistorialVenta() : LiveData<List<HistorialVenta>>
