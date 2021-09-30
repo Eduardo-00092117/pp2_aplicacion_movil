@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "orden_detalle")
 data class OrdenDetalle(
     @PrimaryKey
-    val idOrdenDetalle: Int,
+    val id: Int,
     val idProducto: Int,
     val idOrden: Int,
     val cantidad: Int,

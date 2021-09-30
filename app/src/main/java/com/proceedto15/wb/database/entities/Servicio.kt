@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "servicio")
 data class Servicio (
     @PrimaryKey
-    val idServicio: Int,
+    val id: Int,
     val idCategoria: Int,
     val nombre: String,
     val duracion_aprox: Float,

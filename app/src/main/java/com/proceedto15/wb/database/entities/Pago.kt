@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pago")
 data class Pago (
     @PrimaryKey
-    val idPago: Int,
+    val id: Int,
     val idOrden: Int,
     val metodo_pago: Boolean,
     val monto: Float,

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "marca")
 data class Marca (
     @PrimaryKey
-    val idMarca: Int,
+    val id: Int,
     val nombre: String,
     val descripcion: String
 )

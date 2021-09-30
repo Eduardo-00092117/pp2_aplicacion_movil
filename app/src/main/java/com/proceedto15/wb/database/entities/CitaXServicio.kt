@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "citaxservicio")
 data class CitaXServicio (
     @PrimaryKey
-    val idCitaServicio: Int,
+    val id: Int,
     val idCita: Int,
     val idServicio: Int
 )
