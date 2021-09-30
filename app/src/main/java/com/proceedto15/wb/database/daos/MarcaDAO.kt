@@ -15,7 +15,7 @@ interface MarcaDAO {
     @Query("SELECT * FROM marca")
     fun getAllMarca(): LiveData<List<Marca>>
 
-    @Query("SELECT * FROM marca WHERE idMarca = :id")
+    @Query("SELECT * FROM marca WHERE id = :id")
     fun getMarca(id: Int): LiveData<Marca>
 
     @Query("DELETE FROM marca")

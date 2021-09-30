@@ -15,7 +15,7 @@ interface ClienteDAO {
     @Query("SELECT * FROM cliente")
     fun getAllCliente() : LiveData<List<Cliente>>
 
-    @Query("SELECT * FROM cliente WHERE idCliente = :id")
+    @Query("SELECT * FROM cliente WHERE id = :id")
     fun getCliente(id: Int): LiveData<Cliente>
 
     @Query("DELETE FROM cliente")

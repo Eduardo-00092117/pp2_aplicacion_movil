@@ -15,7 +15,7 @@ interface DiplomadoDAO {
     @Query("SELECT * FROM diplomado")
     fun getAllDiplomado() : LiveData<List<Diplomado>>
 
-    @Query("SELECT * FROM diplomado WHERE idDiplomado = :id")
+    @Query("SELECT * FROM diplomado WHERE id = :id")
     fun getDiplomado(id: Int): LiveData<Diplomado>
 
     @Query("DELETE FROM diplomado")

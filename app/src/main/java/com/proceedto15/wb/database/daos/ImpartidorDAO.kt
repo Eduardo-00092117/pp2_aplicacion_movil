@@ -15,7 +15,7 @@ interface ImpartidorDAO {
     @Query("SELECT * FROM impartidor")
     fun getAllImpartidor(): LiveData<List<Impartidor>>
 
-    @Query("SELECT * FROM impartidor WHERE idImpartidor = :id")
+    @Query("SELECT * FROM impartidor WHERE id = :id")
     fun getImpartidor(id: Int): LiveData<Impartidor>
 
     @Query("DELETE FROM impartidor")

@@ -15,7 +15,7 @@ interface HistorialVentaDAO {
     @Query("SELECT * FROM historial_venta")
     fun getAllHistorialVenta() : LiveData<List<HistorialVenta>>
 
-    @Query("SELECT * FROM historial_venta WHERE idHistorialVenta = :id")
+    @Query("SELECT * FROM historial_venta WHERE id = :id")
     fun getHistorialVenta(id: Int): LiveData<HistorialVenta>
 
     @Query("DELETE FROM historial_venta")

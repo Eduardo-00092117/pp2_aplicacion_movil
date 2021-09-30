@@ -15,7 +15,7 @@ interface ServicioDAO {
     @Query("SELECT * FROM servicio")
     fun getAllServicio(): LiveData<List<Servicio>>
 
-    @Query("SELECT * FROM servicio WHERE idServicio = :id")
+    @Query("SELECT * FROM servicio WHERE id = :id")
     fun getServicio(id: Int): LiveData<Servicio>
 
     @Query("DELETE FROM servicio")

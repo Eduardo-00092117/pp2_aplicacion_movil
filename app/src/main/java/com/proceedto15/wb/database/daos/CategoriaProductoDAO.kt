@@ -15,7 +15,7 @@ interface CategoriaProductoDAO {
     @Query("SELECT * FROM categoria_producto")
     fun getAllCategoriaProducto() : LiveData<List<CategoriaProducto>>
 
-    @Query("SELECT * FROM categoria_producto WHERE idCategoriaProducto = :id")
+    @Query("SELECT * FROM categoria_producto WHERE id = :id")
     fun getCategoriaProducto(id: Int): LiveData<CategoriaProducto>
 
     @Query("DELETE FROM categoria_producto")

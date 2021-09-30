@@ -15,7 +15,7 @@ interface UsuarioDAO {
     @Query("SELECT * FROM usuario")
     fun getAllUsuario(): LiveData<List<Usuario>>
 
-    @Query("SELECT * FROM usuario WHERE idUsuario = :id")
+    @Query("SELECT * FROM usuario WHERE id = :id")
     fun getUsuario(id: Int): LiveData<Usuario>
 
     @Query("DELETE FROM usuario")

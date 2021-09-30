@@ -15,7 +15,7 @@ interface EmpleadoDAO {
     @Query("SELECT * FROM empleado")
     fun getAllEmpleado() : LiveData<List<Empleado>>
 
-    @Query("SELECT * FROM empleado WHERE idEmpleado = :id")
+    @Query("SELECT * FROM empleado WHERE id = :id")
     fun getEmpleado(id: Int): LiveData<Empleado>
 
     @Query("DELETE FROM empleado")

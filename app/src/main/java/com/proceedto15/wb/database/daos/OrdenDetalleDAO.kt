@@ -15,7 +15,7 @@ interface OrdenDetalleDAO {
     @Query("SELECT * FROM orden_detalle")
     fun getAllOrdenDetalle(): LiveData<List<OrdenDetalle>>
 
-    @Query("SELECT * FROM orden_detalle WHERE idOrdenDetalle = :id")
+    @Query("SELECT * FROM orden_detalle WHERE id = :id")
     fun getOrdenDetalle(id: Int): LiveData<OrdenDetalle>
 
     @Query("DELETE FROM orden_detalle")

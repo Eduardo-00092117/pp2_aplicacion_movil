@@ -15,7 +15,7 @@ interface CitaXServicioDAO {
     @Query("SELECT * FROM citaxservicio")
     fun getAllCitaXServicio() : LiveData<List<CitaXServicio>>
 
-    @Query("SELECT * FROM citaxservicio WHERE idCitaServicio = :id")
+    @Query("SELECT * FROM citaxservicio WHERE id = :id")
     fun getCitaXServicio(id: Int): LiveData<CitaXServicio>
 
     @Query("DELETE FROM citaxservicio")

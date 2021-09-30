@@ -15,7 +15,7 @@ interface CitaDAO {
     @Query("SELECT * FROM cita")
     fun getAllCita() : LiveData<List<Cita>>
 
-    @Query("SELECT * FROM cita WHERE idCita = :id")
+    @Query("SELECT * FROM cita WHERE id = :id")
     fun getCita(id: Int): LiveData<Cita>
 
     @Query("DELETE FROM cita")
