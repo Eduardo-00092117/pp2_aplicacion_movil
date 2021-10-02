@@ -3,4 +3,20 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="login_txt">Iniciar sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="login_email_hint">Correo</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="not_empty">Este campo no puede ir vacío</string>
+    <string name="not_connected">Sin conexión a internet</string>
+    <string name="mail_pass_incorrect">Correo o contraseña incorrectos</string>
+    <string name="login_successful">Se ha iniciado sesión correctamente</string>
+    <string name="login_signup_hint">¿No tiene una cuenta? Registrese</string>
+    <string name="register_name_hint">Nombre</string>
+    <string name="register_lastname_hint">Apellido</string>
+    <string name="register_birthday">Fecha de nacimiento</string>
+    <string name="register_txt">Registrarte</string>
+
+    <string name="log_out">Cerrar sesión</string>
 </resources>
