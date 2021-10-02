@@ -73,6 +73,8 @@ class CitaRepository (
 
     fun getUsuario(id: Int) = usuarioDAO.getUsuario(id)
 
+    fun getUsuarioPorEmail(email: String) = usuarioDAO.getUsuarioPorEmail(email)
+
     fun getEmpleado(id: Int) = empleadoDAO.getEmpleado(id)
 
     fun getEmpleadoXServicio(id: Int) = empleadoXServicioDAO.getEmpleadoXServicio(id)
