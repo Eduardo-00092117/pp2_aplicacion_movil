@@ -18,6 +18,9 @@ interface UsuarioDAO {
     @Query("SELECT * FROM usuario WHERE id = :id")
     fun getUsuario(id: Int): LiveData<Usuario>
 
+    @Query("SELECT * FROM usuario WHERE usuario = :usuario")
+    fun getUsuarioPorEmail(usuario: String): LiveData<Usuario>
+
     @Query("DELETE FROM usuario")
     suspend fun nukeTable()
 }
