@@ -1,6 +1,5 @@
 package com.proceedto15.wb.ui.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.AdminAdapter
 import com.proceedto15.wb.database.entities.Cita
-import com.proceedto15.wb.database.entities.Producto
 
 class AdminFragment : Fragment() {
 
@@ -27,7 +25,7 @@ class AdminFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.admin_fragment, container, false)
+        return inflater.inflate(R.layout.admin_fragment_crud, container, false)
     }
 
     fun initRecycler(list: List<Cita>){

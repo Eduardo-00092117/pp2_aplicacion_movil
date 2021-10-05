@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="Cita">
+        </TextView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dateTextAppearance="">
+        </CalendarView>
+
+    </LinearLayout>
+
+</LinearLayout>
