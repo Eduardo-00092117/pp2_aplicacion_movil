@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.adapters.ProductsAdapter
 import com.proceedto15.wb.database.entities.Producto
+import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.FragmentProductsBinding
 
 class ProductsFragment : Fragment() {
@@ -18,12 +20,14 @@ class ProductsFragment : Fragment() {
 
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: ProductsAdapter
+    private lateinit var ordenViewModel: OrdenViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
 
+        changeList()
         initRecycler(emptyList())
 
         return root
@@ -37,6 +41,12 @@ class ProductsFragment : Fragment() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
+
+    fun changeList(){
+        ordenViewModel.allProducto.observe(viewLifecycleOwner, { match ->
+            viewAdapter.dataChange(match)
+        })
     }
 
     fun onClicked(item: Producto) {

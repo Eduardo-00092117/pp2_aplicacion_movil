@@ -23,6 +23,11 @@ class ProductsAdapter(var productos: List<Producto>, val clickListener: (Product
 
     override fun getItemCount(): Int = productos.size
 
+    fun dataChange(listaMatches : List<Producto>){
+        productos = listaMatches
+        notifyDataSetChanged()
+    }
+
     inner class ProductHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Producto, clcikListener: (Producto) -> Unit) = with(itemView) {
