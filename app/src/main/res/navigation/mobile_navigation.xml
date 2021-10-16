@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_products" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.proceedto15.wb.ui.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_reservation"
+        android:name="com.proceedto15.wb.ui.fragments.ReservationFragment"
+        android:label="@string/title_reservation"
+        tools:layout="@layout/fragment_reservation" />
 
     <fragment
         android:id="@+id/navigation_notifications"
