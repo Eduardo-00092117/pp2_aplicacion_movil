@@ -9,6 +9,6 @@ data class Servicio (
     val id: Int,
     val idCategoria: Int,
     val nombre: String,
-    val duracion_aprox: Float,
-    val descripcion: String
+    val duracion_aprox: Int,
+    val descripcion: String,
 )

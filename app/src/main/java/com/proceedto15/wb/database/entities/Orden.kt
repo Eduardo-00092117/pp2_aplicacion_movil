@@ -9,5 +9,6 @@ data class Orden (
     val id: Int,
     val idCliente: Int,
     val fecha: String,
-    val hora: String
+    val hora: String,
+    val estado: Boolean
 )
