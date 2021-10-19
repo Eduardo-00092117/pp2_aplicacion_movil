@@ -10,5 +10,6 @@ data class OrdenDetalle(
     val idProducto: Int,
     val idOrden: Int,
     val cantidad: Int,
+    val costo_unitario: Float,
     val total: Float
 )
