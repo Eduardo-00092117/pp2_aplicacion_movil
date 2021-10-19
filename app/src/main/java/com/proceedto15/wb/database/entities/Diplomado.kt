@@ -15,7 +15,5 @@ data class Diplomado (
     val fecha_fin: String,
     val duracion: String,
     val precio: Float,
-    val descripcion: String,
-    val cantidad: Int,
-    val total: Float
+    val descripcion: String
 )
