@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">WB</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_reservation">Reservación</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_diplomados">Diplomados</string>
 
     <string name="login_txt">Iniciar sesión</string>
     <string name="register">Registrarse</string>
@@ -25,4 +25,5 @@
     <string name="total_time">El tiempo total es de:</string>
     <string name="reservar_action">Reservar</string>
     <string name="min">min</string>
+    <string name="dash_text">-</string>
 </resources>
