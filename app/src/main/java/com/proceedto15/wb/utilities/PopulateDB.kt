@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.proceedto15.wb.database.entities.*
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
+import com.proceedto15.wb.database.viewmodels.DiplomadoViewModel
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 
 class PopulateDB(context: ViewModelStoreOwner) {
 
     private val ordenViewModel = ViewModelProvider(context).get(OrdenViewModel::class.java)
     private val citaViewModel = ViewModelProvider(context).get((CitaViewModel::class.java))
+    private val diplomadoViewModel = ViewModelProvider(context).get((DiplomadoViewModel::class.java))
 
     fun populate(){
         populateCategoria()
@@ -20,6 +22,9 @@ class PopulateDB(context: ViewModelStoreOwner) {
         populateServicio()
         populateEmpleado()
         populateEmpleadoXServicio()
+
+        populateImpartidor()
+        populateDiplomado()
     }
 
     fun populateCategoria(){
@@ -98,5 +103,24 @@ class PopulateDB(context: ViewModelStoreOwner) {
         citaViewModel.insertEmpleadoXServicio(EmpleadoXServicio(16, 4, 4))
         citaViewModel.insertEmpleadoXServicio(EmpleadoXServicio(17, 4, 5))
         citaViewModel.insertEmpleadoXServicio(EmpleadoXServicio(18, 4, 6))
+    }
+
+    fun populateImpartidor(){
+        diplomadoViewModel.insertImpartidor(Impartidor(1, "Carlos", "Sharp"))
+        diplomadoViewModel.insertImpartidor(Impartidor(2, "Eduardo", "Pacheco"))
+        diplomadoViewModel.insertImpartidor(Impartidor(3, "Marcela", "Siguenza"))
+        diplomadoViewModel.insertImpartidor(Impartidor(4, "David", "Salazar"))
+    }
+
+    fun populateDiplomado(){
+        diplomadoViewModel.insertDiplomado(
+            Diplomado(1, 1, "Curso de peinado", "Salon de belleza Will Barraza", 20, "31/10/2021",
+            "30/11/2021", "120 minutos cada sesion", 29.99F, "Diplomado para aprender a peinar"))
+        diplomadoViewModel.insertDiplomado(Diplomado(2, 2, "Corte de pelo para hombres", "Salon de belleza Will Barraza", 30, "10/10/2021",
+            "9/11/2021", "60 minutos cada sesion", 19.99F, "Diplomado para aprender a cortar el cabello de los machos pecho peludo"))
+        diplomadoViewModel.insertDiplomado(Diplomado(3, 3, "Curso para extensiones de cabello", "Salon de belleza Will Barraza", 30, "10/10/2021",
+            "9/11/2021", "60 minutos cada sesion", 29.99F, "Diplomado para aprender a poner extensiones"))
+        diplomadoViewModel.insertDiplomado(Diplomado(4, 4, "Curso tintado de cabello", "Salon de belleza Will Barraza", 30, "15/10/2021",
+            "15/11/2021", "120 minutos cada sesion", 39.99F, "Diplomado para aprender a pintar cabello"))
     }
 }
