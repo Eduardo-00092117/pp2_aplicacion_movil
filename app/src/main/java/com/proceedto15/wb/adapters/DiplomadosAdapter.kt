@@ -31,11 +31,11 @@ class DiplomadosAdapter(var diplomados: List<Diplomado>, val clicklistener: (Dip
 
     inner class DiplomadoHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: Diplomado, clcikListener: (Diplomado) -> Unit) = with(itemView) {
+        fun bind(item: Diplomado, clickListener: (Diplomado) -> Unit) = with(itemView) {
             itemView.findViewById<TextView>(R.id.diplomado_item_name).text = item.nombre
             itemView.findViewById<TextView>(R.id.diplomado_item_start_date).text = item.fecha_inicio
             itemView.findViewById<TextView>(R.id.diplomado_item_finish_date).text = item.fecha_fin
-            this.setOnClickListener{clcikListener(item)}
+            this.setOnClickListener{clickListener(item)}
         }
     }
 }
