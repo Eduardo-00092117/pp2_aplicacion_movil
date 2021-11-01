@@ -6,13 +6,41 @@
     android:id="@+id/admin_item"
     android:paddingHorizontal="10dp"
     android:paddingTop="10dp">
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/admin_item_id"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_alignParentStart="true"
-        android:paddingBottom="10dp"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_item_id"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_item_id_client"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="10dp"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

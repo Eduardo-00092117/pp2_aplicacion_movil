@@ -11,7 +11,7 @@ import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.AdminAdapter
 import com.proceedto15.wb.database.entities.Cita
 
-class AdminFragment : Fragment() {
+class AdminAddFragment : Fragment() {
 
     //private var _binding: FragmentAdminBinding? = null
     //private val binding get() = _binding!!
@@ -25,7 +25,7 @@ class AdminFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.admin_fragment_crud, container, false)
+        return inflater.inflate(R.layout.admin_activity_crud, container, false)
     }
 
     fun initRecycler(list: List<Cita>){

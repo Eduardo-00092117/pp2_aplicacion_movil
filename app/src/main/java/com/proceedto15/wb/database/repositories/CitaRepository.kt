@@ -79,6 +79,10 @@ class CitaRepository (
 
     fun getEmpleadoXServicio(id: Int) = empleadoXServicioDAO.getEmpleadoXServicio(id)
 
+    // Delete 1
+
+    fun deleteOneCita(id: Int) = citaDAO.deleteOneCita(id)
+
     // NukeTables
 
     @WorkerThread
