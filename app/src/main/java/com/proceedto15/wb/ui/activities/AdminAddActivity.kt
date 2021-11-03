@@ -1,5 +1,7 @@
 package com.proceedto15.wb.ui.activities
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -15,8 +17,11 @@ import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Cita
 import com.proceedto15.wb.database.entities.Cliente
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
+import com.proceedto15.wb.databinding.AdminFragmentAddBinding
 import com.proceedto15.wb.ui.fragments.DatePickerFragment
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AdminAddActivity : AppCompatActivity() {
 
@@ -26,21 +31,27 @@ class AdminAddActivity : AppCompatActivity() {
     private lateinit var clientes: Spinner
     private lateinit var citaViewModel: CitaViewModel
     private lateinit var listaclientes: ArrayList<String>
+    private lateinit var _binding: AdminFragmentAddBinding
 
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.admin_fragment_add)
+        _binding = AdminFragmentAddBinding.inflate(layoutInflater)
+        val view = _binding.root
+        setContentView(view)
 
         initData()
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun initData(){
         addData = findViewById(R.id.add_appointment)
         calendar = findViewById(R.id.calendar)
         time = findViewById(R.id.time)
         citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         clientes = findViewById(R.id.clientes_spinner)
+        listaclientes = ArrayList()
         citaViewModel.allCliente.observe(this, {
 
             it.forEach{
@@ -56,7 +67,15 @@ class AdminAddActivity : AppCompatActivity() {
 
         calendar.setOnClickListener(showDatePickerDialog)
 
-
+        time.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                time.setText(SimpleDateFormat("HH:mm").format(cal.time))
+            }
+            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+        }
     }
 
     val showDatePickerDialog = View.OnClickListener {
@@ -71,6 +90,8 @@ class AdminAddActivity : AppCompatActivity() {
         val date = "$day/$month/$year"
         calendar.setText("$day de $month_name $year")
     }
+
+
 
     val addDataClickListener = View.OnClickListener {
         /*citaViewModel.insertCita(Cita(0, ))

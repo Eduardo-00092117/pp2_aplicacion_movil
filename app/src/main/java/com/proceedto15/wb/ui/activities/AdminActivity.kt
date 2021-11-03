@@ -26,7 +26,6 @@ class AdminActivity: AppCompatActivity() {
     private lateinit var viewAdapter: AdminAdapter
     private lateinit var citaViewModel: CitaViewModel
     private lateinit var plusButton: FloatingActionButton
-    private lateinit var rvappointment: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +34,8 @@ class AdminActivity: AppCompatActivity() {
         val view = _binding.root
         setContentView(view)
         //initData()
+        plusButton = findViewById(R.id.add_appointment)
+        plusButton.setOnClickListener(plusClickListener)
         list()
         initRecycler(emptyList())
 
@@ -48,6 +49,7 @@ class AdminActivity: AppCompatActivity() {
         citaViewModel.allCita.observe(this, { match ->
             viewAdapter.dataChange(match)
         })
+
     }
 
 
@@ -68,7 +70,9 @@ class AdminActivity: AppCompatActivity() {
         finish()
     }
 
-    fun onClicked(item: Cita) {}
+    fun onClicked(item: Cita) {
+
+    }
 
 }
 

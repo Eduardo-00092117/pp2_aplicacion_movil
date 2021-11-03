@@ -31,6 +31,12 @@
         <activity
             android:name=".ui.activities.AdminActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.activities.AdminAddActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.activities.CartActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
