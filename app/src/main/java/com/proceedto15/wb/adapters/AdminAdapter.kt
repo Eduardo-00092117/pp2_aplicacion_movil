@@ -24,8 +24,7 @@ class AdminAdapter(var citas: List<Cita>, val viewModel: CitaViewModel ,val clic
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminAdapter.AdminHolder {
         view = LayoutInflater.from(parent.context).inflate(R.layout.admin_item, parent, false)
-        val context = parent.context
-        return AdminHolder(view, context)
+        return AdminHolder(view)
     }
 
     override fun onBindViewHolder(holder: AdminAdapter.AdminHolder, position: Int) {
@@ -39,23 +38,18 @@ class AdminAdapter(var citas: List<Cita>, val viewModel: CitaViewModel ,val clic
         notifyDataSetChanged()
     }
 
-    inner class AdminHolder constructor(itemView: View, context: Context): RecyclerView.ViewHolder(itemView) {
+    inner class AdminHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Cita, clickListener: (Cita) -> Unit) = with(itemView){
             itemView.findViewById<TextView>(R.id.admin_item_id).text = item.id.toString()
             itemView.findViewById<TextView>(R.id.admin_item_id_client).text = item.idCliente.toString()
             val v_edit = itemView.findViewById<Button>(R.id.edit)
-            itemView.findViewById<Button>(R.id.edit).setOnClickListener{openEditPage(context)}
+            itemView.findViewById<Button>(R.id.edit).setOnClickListener{clickListener(item)}
             val v_delete = itemView.findViewById<Button>(R.id.delete)
             itemView.findViewById<Button>(R.id.delete).setOnClickListener{deleteAppointment(item)}
-            this.setOnClickListener{clickListener(item)}
+            //this.setOnClickListener{clickListener(item)}
         }
 
-        fun openEditPage(item: Context){
-            val intent = Intent(item, AdminEditActivity::class.java)
-
-
-        }
 
         fun deleteAppointment(item: Cita){
             viewModel.deleteOneCita(item.id)

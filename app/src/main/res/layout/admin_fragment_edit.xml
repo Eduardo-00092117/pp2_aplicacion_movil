@@ -16,6 +16,7 @@
 
     </TextView>
     <Spinner
+        android:id="@+id/customers_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"
@@ -23,6 +24,7 @@
         android:layout_marginRight="20dp">
     </Spinner>
     <EditText
+        android:id="@+id/edit_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -30,6 +32,7 @@
         android:hint="Seleccione una fecha">
     </EditText>
     <EditText
+        android:id="@+id/edit_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -37,6 +40,7 @@
         android:hint="Seleccione la hora de inicio">
     </EditText>
     <Button
+        android:id="@+id/edit_appointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
