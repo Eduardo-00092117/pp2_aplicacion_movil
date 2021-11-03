@@ -74,6 +74,7 @@ class AdminAddActivity : AppCompatActivity() {
 
     val addDataClickListener = View.OnClickListener {
         /*citaViewModel.insertCita(Cita(0, ))
+         */
     }
 
 }

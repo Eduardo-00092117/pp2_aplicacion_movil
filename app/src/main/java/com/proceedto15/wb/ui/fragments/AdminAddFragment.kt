@@ -30,7 +30,7 @@ class AdminAddFragment : Fragment() {
 
     fun initRecycler(list: List<Cita>){
         viewManager = LinearLayoutManager(context)
-        viewAdapter = AdminAdapter(list, { listItem: Cita -> onClicked(listItem)})
+        //viewAdapter = AdminAdapter(list, { listItem: Cita -> onClicked(listItem)})
         /*binding.recyclerAdmin.apply{
             setHasFixedSize(true)
             layoutManager = viewManager

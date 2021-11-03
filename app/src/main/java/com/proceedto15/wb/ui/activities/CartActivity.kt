@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.CartAdapter
 import com.proceedto15.wb.database.entities.Orden
+import com.proceedto15.wb.database.entities.OrdenDetalle
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 
 class CartActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class CartActivity : AppCompatActivity() {
     private lateinit var viewAdapter: CartAdapter
     private lateinit var ordenViewModel: OrdenViewModel
     private lateinit var ordenDetalleViewModel: OrdenViewModel
+    val rv_cart = findViewById<RecyclerView>(R.id.recycler_cart)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +32,19 @@ class CartActivity : AppCompatActivity() {
     }
 
 
-    fun initRecycler(list: List<Orden>){
+    fun initRecycler(list: List<OrdenDetalle>){
         viewManager = LinearLayoutManager(this)
-        viewAdapter = CartAdapter(list) { matchItem: Orden -> onClicked(matchItem)}
-
+        viewAdapter = CartAdapter(list) { matchItem: OrdenDetalle -> onClicked(matchItem)}
+        rv_cart.apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
 
 
     }
 
+    fun onClicked(item: OrdenDetalle){
+
+    }
 }
