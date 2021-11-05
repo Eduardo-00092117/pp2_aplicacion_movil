@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        else if(mAuth.currentUser!!.email == "jsreyes3248@gmail.com"){
+            intent = Intent(this, AdminActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val navView: BottomNavigationView = binding.navView
 

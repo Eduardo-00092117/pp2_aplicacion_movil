@@ -80,8 +80,13 @@ class LoginActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
-                    //val intent = Intent(this, MainActivity::class.java)
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent : Intent
+                    if(mAuth.currentUser?.email == "jsreyes3248@gmail.com"){
+                        intent = Intent(this, AdminActivity::class.java)
+                    }
+                    else {
+                        intent = Intent(this, MainActivity::class.java)
+                    }
                     startActivity(intent)
                     finish()
                 }
