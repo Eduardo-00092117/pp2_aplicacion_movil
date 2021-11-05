@@ -51,6 +51,7 @@ class AdminActivity: AppCompatActivity() {
     fun initData(){
         mAuth = FirebaseAuth.getInstance()
     }
+
     fun ifFirstTime(){
         if(firstTime.firstTime == ""){
             firstTime.firstTime = "1"
@@ -65,8 +66,6 @@ class AdminActivity: AppCompatActivity() {
 
     }
 
-
-
     fun initRecycler(list: List<Cita>) {
         viewManager = LinearLayoutManager(this)
         viewAdapter = AdminAdapter(list, citaViewModel, { listItem: Cita -> onClicked(listItem) })
@@ -80,7 +79,6 @@ class AdminActivity: AppCompatActivity() {
     val plusClickListener = View.OnClickListener {
         val intent = Intent(this, AdminAddActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     fun onClicked(item: Cita) {
@@ -88,9 +86,7 @@ class AdminActivity: AppCompatActivity() {
         extras.putParcelable("appointment", item)
         val intent = Intent(this, AdminEditActivity::class.java).putExtras(extras)
         startActivity(intent)
-        finish()
     }
-
 }
 
 
