@@ -2,6 +2,8 @@ package com.proceedto15.wb.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -33,6 +35,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        else if(mAuth.currentUser!!.email == "jsreyes3248@gmail.com"){
+            intent = Intent(this, AdminActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val navView: BottomNavigationView = binding.navView
 
@@ -45,6 +52,24 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.user_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.logout_action -> {
+                mAuth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     fun initData(){

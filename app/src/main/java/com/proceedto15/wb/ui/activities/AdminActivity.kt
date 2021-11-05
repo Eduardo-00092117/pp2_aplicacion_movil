@@ -3,6 +3,8 @@ package com.proceedto15.wb.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
@@ -18,10 +20,13 @@ import com.proceedto15.wb.database.entities.Cita
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.AdminActivityCrudBinding
+import com.proceedto15.wb.utilities.PopulateDB
+import com.proceedto15.wb.utilities.Preferences
 
 class AdminActivity: AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
+    private lateinit var firstTime: Preferences
     private lateinit var _binding: AdminActivityCrudBinding
 
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -35,26 +40,51 @@ class AdminActivity: AppCompatActivity() {
         citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         val view = _binding.root
         setContentView(view)
-        //initData()
-        plusButton = findViewById(R.id.add_appointment)
-        plusButton.setOnClickListener(plusClickListener)
-        list()
-        initRecycler(emptyList())
 
+        initData()
+        ifFirstTime()
+        changeList()
+        initRecycler(emptyList())
     }
 
     fun initData(){
         mAuth = FirebaseAuth.getInstance()
+        firstTime = Preferences(applicationContext)
+
+        plusButton = findViewById(R.id.add_appointment)
+        plusButton.setOnClickListener(plusClickListener)
     }
 
-    fun list(){
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.user_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.logout_action -> {
+                mAuth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun ifFirstTime(){
+        if(firstTime.firstTime == ""){
+            firstTime.firstTime = "1"
+            PopulateDB(this).populate()
+        }
+    }
+
+    fun changeList(){
         citaViewModel.allCita.observe(this, { match ->
             viewAdapter.dataChange(match)
         })
-
     }
-
-
 
     fun initRecycler(list: List<Cita>) {
         viewManager = LinearLayoutManager(this)
@@ -69,7 +99,6 @@ class AdminActivity: AppCompatActivity() {
     val plusClickListener = View.OnClickListener {
         val intent = Intent(this, AdminAddActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     fun onClicked(item: Cita) {
@@ -77,9 +106,7 @@ class AdminActivity: AppCompatActivity() {
         extras.putParcelable("appointment", item)
         val intent = Intent(this, AdminEditActivity::class.java).putExtras(extras)
         startActivity(intent)
-        finish()
     }
-
 }
 
 

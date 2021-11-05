@@ -102,8 +102,10 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
 
     // Delete 1
 
-    fun deleteOneCita(id: Int) = repository.deleteOneCita(id)
-
+    //suspend fun deleteOneCita(id: Int) = repository.deleteOneCita(id)
+    fun deleteOneCita(id: Int) = viewModelScope.launch(Dispatchers.IO){
+        repository!!.deleteOneCita(id)
+    }
     // NukeTables
 
     private suspend fun nukeCita() = repository.nukeCita()

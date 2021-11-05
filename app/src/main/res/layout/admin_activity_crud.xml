@@ -8,10 +8,22 @@
     android:layout_gravity="center"
     android:background="@color/white"
     tools:context=".ui.activities.AdminActivity">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Citas"
+            android:textSize="20dp"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+        </TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_appointment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_appointment"
             android:layout_width="wrap_content"
