@@ -7,10 +7,9 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
-import com.proceedto15.wb.database.entities.Producto
 import com.proceedto15.wb.database.entities.Servicio
 
-class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView): RecyclerView.Adapter<ServicesAdapter.ServiceHolder>() {
+class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView, val selectedServices: TextView): RecyclerView.Adapter<ServicesAdapter.ServiceHolder>() {
 
     private lateinit var view: View
 
@@ -40,8 +39,20 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
 
         fun clcikListener(item: Servicio, check: CheckBox){
             var time = totalTimeText.text.toString().toInt()
-            if(check.isChecked) time += item.duracion_aprox
-            else time -= item.duracion_aprox
+            val array = selectedServices.text.toString().split(",").toCollection(ArrayList())
+            if(check.isChecked){
+                time += item.duracion_aprox
+                if(!array.contains(item.id.toString())) {
+                    array.add(item.id.toString())
+                }
+            }
+            else{
+                time -= item.duracion_aprox
+                if(array.contains(item.id.toString())) {
+                    array.remove(item.id.toString())
+                }
+            }
+            selectedServices.text = array.joinToString(separator = ",")
             totalTimeText.text = time.toString()
         }
     }
