@@ -6,28 +6,35 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.proceedto15.wb.R
+import com.proceedto15.wb.utilities.AppConstants.RC_SIGN_IN
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var loginBtn: Button
     private lateinit var registerBtn: TextView
+    private lateinit var googleBtn: TextView
     private lateinit var emailBox: EditText
     private lateinit var pswdBox: EditText
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         initData()
-
     }
 
     fun initData(){
@@ -35,11 +42,20 @@ class LoginActivity : AppCompatActivity() {
 
         loginBtn = findViewById(R.id.cirLoginButton)
         registerBtn = findViewById(R.id.registerAction)
+        googleBtn = findViewById(R.id.googleAction)
         emailBox = findViewById(R.id.editTextEmail)
         pswdBox = findViewById(R.id.editTextPassword)
 
         loginBtn.setOnClickListener(loginClickListener)
         registerBtn.setOnClickListener(registerClickListener)
+        googleBtn.setOnClickListener(loginWithGoogleClickListener)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.my_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     val loginClickListener = View.OnClickListener {
@@ -65,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                     //val intent = Intent(this, MainActivity::class.java)
-                    val intent = Intent(this, AdminActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -83,5 +99,41 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    val loginWithGoogleClickListener = View.OnClickListener {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.d("LOGIN_F", "Google sign in failed")
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, getString(R.string.google_problem), Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }
