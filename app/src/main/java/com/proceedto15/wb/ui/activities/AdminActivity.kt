@@ -3,6 +3,8 @@ package com.proceedto15.wb.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
@@ -38,18 +40,37 @@ class AdminActivity: AppCompatActivity() {
         citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         val view = _binding.root
         setContentView(view)
-        //initData()
-        firstTime = Preferences(applicationContext)
-        ifFirstTime()
-        plusButton = findViewById(R.id.add_appointment)
-        plusButton.setOnClickListener(plusClickListener)
-        list()
-        initRecycler(emptyList())
 
+        initData()
+        ifFirstTime()
+        changeList()
+        initRecycler(emptyList())
     }
 
     fun initData(){
         mAuth = FirebaseAuth.getInstance()
+        firstTime = Preferences(applicationContext)
+
+        plusButton = findViewById(R.id.add_appointment)
+        plusButton.setOnClickListener(plusClickListener)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.user_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.logout_action -> {
+                mAuth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     fun ifFirstTime(){
@@ -59,11 +80,10 @@ class AdminActivity: AppCompatActivity() {
         }
     }
 
-    fun list(){
+    fun changeList(){
         citaViewModel.allCita.observe(this, { match ->
             viewAdapter.dataChange(match)
         })
-
     }
 
     fun initRecycler(list: List<Cita>) {
