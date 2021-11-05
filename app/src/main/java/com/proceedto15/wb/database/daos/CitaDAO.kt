@@ -19,7 +19,7 @@ interface CitaDAO {
     fun getCita(id: Int): LiveData<Cita>
 
     @Query("DELETE FROM cita WHERE id = :id")
-    fun deleteOneCita(id: Int)
+    suspend fun deleteOneCita(id: Int)
 
     @Query("DELETE FROM cita")
     suspend fun nukeTable()

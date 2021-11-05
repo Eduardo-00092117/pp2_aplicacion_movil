@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.proceedto15.wb.R
+import com.proceedto15.wb.database.entities.Cita
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
 import com.proceedto15.wb.databinding.AdminFragmentAddBinding
 import com.proceedto15.wb.databinding.AdminFragmentEditBinding
@@ -21,13 +19,14 @@ import kotlin.collections.ArrayList
 
 class AdminEditActivity : AppCompatActivity() {
 
-    private lateinit var addData: Button
+    private lateinit var editData: Button
     private lateinit var calendar: EditText
     private lateinit var time: EditText
     private lateinit var clientes: Spinner
     private lateinit var citaViewModel: CitaViewModel
     private lateinit var listaclientes: ArrayList<String>
     private lateinit var _binding: AdminFragmentEditBinding
+    private lateinit var cita : Cita
 
 
 
@@ -42,12 +41,14 @@ class AdminEditActivity : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     fun initData(){
-        addData = findViewById(R.id.edit_appointment)
+        cita = intent.extras!!.getParcelable("appointment")!!
+        editData = findViewById(R.id.edit_appointment)
         calendar = findViewById(R.id.edit_date)
         time = findViewById(R.id.edit_time)
         citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         clientes = findViewById(R.id.customers_spinner)
         listaclientes = ArrayList()
+        bindData()
         citaViewModel.allCliente.observe(this, {
 
             it.forEach{
@@ -72,6 +73,7 @@ class AdminEditActivity : AppCompatActivity() {
             }
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
+        editData.setOnClickListener(editDataClickListener)
     }
 
     val showDatePickerDialog = View.OnClickListener {
@@ -87,11 +89,27 @@ class AdminEditActivity : AppCompatActivity() {
         calendar.setText("$day de $month_name $year")
     }
 
-
+    fun bindData(){
+        time.setText(cita.hora)
+        calendar.setText(cita.fecha)
+    }
 
     val editDataClickListener = View.OnClickListener {
-        /*citaViewModel.insertCita(Cita(0, ))
-         */
+        if(calendar.text.isEmpty() && time.text.isEmpty()){
+            Toast.makeText(this, "Ingrese datos porfavor", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            citaViewModel.insertCita(
+                Cita(
+                    cita.id,
+                    clientes.selectedItem as Int,
+                    calendar.text.toString(),
+                    time.text.toString()
+                )
+            )
+        }
     }
+
+
 
 }

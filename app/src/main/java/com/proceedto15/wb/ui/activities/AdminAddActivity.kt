@@ -5,10 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +29,7 @@ class AdminAddActivity : AppCompatActivity() {
     private lateinit var citaViewModel: CitaViewModel
     private lateinit var listaclientes: ArrayList<String>
     private lateinit var _binding: AdminFragmentAddBinding
-
+    private var size : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,16 +49,21 @@ class AdminAddActivity : AppCompatActivity() {
         citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         clientes = findViewById(R.id.clientes_spinner)
         listaclientes = ArrayList()
+        listaclientes.add("Seleccione un cliente")
         citaViewModel.allCliente.observe(this, {
 
             it.forEach{
-                val nombrec = it.nombre + " " + it.apellido
+                val nombrec =  it.id.toString() + " " + it.nombre + " " + it.apellido
                 listaclientes.add(nombrec)
             }
             val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ArrayList<String>())
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             clientes.setAdapter(spinnerAdapter)
             spinnerAdapter.addAll(listaclientes)
+        })
+
+        citaViewModel.allCita.observe(this, {
+            size = it.size
         })
 
 
@@ -76,6 +78,8 @@ class AdminAddActivity : AppCompatActivity() {
             }
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
+
+        addData.setOnClickListener(addDataClickListener)
     }
 
     val showDatePickerDialog = View.OnClickListener {
@@ -94,8 +98,24 @@ class AdminAddActivity : AppCompatActivity() {
 
 
     val addDataClickListener = View.OnClickListener {
-        /*citaViewModel.insertCita(Cita(0, ))
-         */
+        val list = clientes.selectedItem.toString().split(" ")
+        if(calendar.text.isEmpty() && time.text.isEmpty()){
+            Toast.makeText(this, "Ingrese datos porfavor", Toast.LENGTH_SHORT).show()
+        }
+        else if(clientes.selectedItem.toString() == "Seleccione un cliente"){
+            Toast.makeText(this, "Ingrese un cliente valido", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            citaViewModel.insertCita(
+                Cita(
+                    size+1,
+                    list[0].toInt(),
+                    calendar.text.toString(),
+                    time.text.toString()
+                )
+            )
+        }
+
     }
 
 }

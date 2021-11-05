@@ -18,10 +18,13 @@ import com.proceedto15.wb.database.entities.Cita
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.AdminActivityCrudBinding
+import com.proceedto15.wb.utilities.PopulateDB
+import com.proceedto15.wb.utilities.Preferences
 
 class AdminActivity: AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
+    private lateinit var firstTime: Preferences
     private lateinit var _binding: AdminActivityCrudBinding
 
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -36,6 +39,8 @@ class AdminActivity: AppCompatActivity() {
         val view = _binding.root
         setContentView(view)
         //initData()
+        firstTime = Preferences(applicationContext)
+        ifFirstTime()
         plusButton = findViewById(R.id.add_appointment)
         plusButton.setOnClickListener(plusClickListener)
         list()
@@ -45,6 +50,12 @@ class AdminActivity: AppCompatActivity() {
 
     fun initData(){
         mAuth = FirebaseAuth.getInstance()
+    }
+    fun ifFirstTime(){
+        if(firstTime.firstTime == ""){
+            firstTime.firstTime = "1"
+            PopulateDB(this).populate()
+        }
     }
 
     fun list(){

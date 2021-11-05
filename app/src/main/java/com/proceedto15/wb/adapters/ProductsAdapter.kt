@@ -32,7 +32,8 @@ class ProductsAdapter(var productos: List<Producto>, val clickListener: (Product
 
         fun bind(item: Producto, clcikListener: (Producto) -> Unit) = with(itemView) {
             itemView.findViewById<TextView>(R.id.product_item_name).text = item.nombre
-            itemView.findViewById<TextView>(R.id.product_item_stock).text = item.existencia.toString()
+            itemView.findViewById<TextView>(R.id.product_item_desc).text = item.descripcion
+            itemView.findViewById<TextView>(R.id.product_item_stock).text = "$"+item.precio.toString()
             this.setOnClickListener{clcikListener(item)}
         }
     }

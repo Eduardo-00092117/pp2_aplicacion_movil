@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.adapters.ProductsAdapter
@@ -38,7 +39,7 @@ class ProductsFragment : Fragment() {
         viewAdapter = ProductsAdapter(list, { listItem: Producto -> onClicked(listItem)})
         binding.recyclerProducts.apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
+            layoutManager = GridLayoutManager(this.context, 2)
             adapter = viewAdapter
         }
     }
@@ -50,7 +51,7 @@ class ProductsFragment : Fragment() {
     }
 
     fun onClicked(item: Producto) {
-
+        
     }
 
     override fun onDestroyView() {
