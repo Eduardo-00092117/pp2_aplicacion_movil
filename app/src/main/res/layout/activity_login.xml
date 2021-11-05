@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/loginCard"
-    app:cardCornerRadius="@dimen/loginCardRadius"
-    android:elevation="5dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_child_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_marginTop="@dimen/loginViewsMargin"
-    android:layout_marginBottom="@dimen/loginViewsMargin"
-    android:background="@color/white"
-    android:id="@+id/login_child_fragment">
+    android:background="@color/white">
   <LinearLayout
       style="@style/linearParent"
       android:layout_gravity="center"
@@ -50,6 +45,14 @@
         android:text="@string/login_signup_hint"
         android:textAlignment="center"
         android:textColor="@color/golden"/>
+    <TextView
+        android:id="@+id/googleAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_small_margin"
+        android:text="@string/login_with_google"
+        android:textAlignment="center"
+        android:textColor="@color/golden"/>
     <Button
         android:id="@+id/cirLoginButton"
         style="@style/loginButton"
@@ -57,4 +60,4 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/loginViewsMargin"/>
   </LinearLayout>
-</androidx.cardview.widget.CardView>
+</ScrollView>
