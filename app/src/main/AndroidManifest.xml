@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WB">
         <activity
+            android:name=".ui.activities.DiplomadoInfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activities.RegisterActivity"
             android:exported="true" />
         <activity
@@ -33,10 +36,10 @@
             android:exported="true" />
         <activity
             android:name=".ui.activities.AdminAddActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ui.activities.CartActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
