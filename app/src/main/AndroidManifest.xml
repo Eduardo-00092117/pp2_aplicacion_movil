@@ -21,7 +21,10 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".ui.activities.AdminActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,10 +32,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.AdminActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.activities.AdminAddActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.activities.AdminEditActivity"
             android:exported="true"/>
         <activity
             android:name=".ui.activities.CartActivity"

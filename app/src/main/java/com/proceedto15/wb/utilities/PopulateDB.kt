@@ -25,6 +25,9 @@ class PopulateDB(context: ViewModelStoreOwner) {
 
         populateImpartidor()
         populateDiplomado()
+
+        populateCita()
+        populateCliente()
     }
 
     fun populateCategoria(){
@@ -122,5 +125,18 @@ class PopulateDB(context: ViewModelStoreOwner) {
             "9/11/2021", "60 minutos cada sesion", 29.99F, "Diplomado para aprender a poner extensiones"))
         diplomadoViewModel.insertDiplomado(Diplomado(4, 4, "Curso tintado de cabello", "Salon de belleza Will Barraza", 30, "15/10/2021",
             "15/11/2021", "120 minutos cada sesion", 39.99F, "Diplomado para aprender a pintar cabello"))
+    }
+
+    fun populateCliente(){
+        citaViewModel.insertCliente(Cliente(1,1,"Joshua", "Sharp", "5/11/97"))
+        citaViewModel.insertCliente(Cliente(2,2,"Fernando", "Salazar", "5/11/97"))
+        citaViewModel.insertCliente(Cliente(3,3,"Mauricio", "Pacheco", "5/11/97"))
+    }
+
+    fun populateCita(){
+        citaViewModel.insertCita(Cita(1, 1, "25 de Nov 2021", "15:00"))
+        citaViewModel.insertCita(Cita(2, 1, "26 de Nov 2021", "15:00"))
+        citaViewModel.insertCita(Cita(3, 1, "27 de Nov 2021", "15:00"))
+
     }
 }
