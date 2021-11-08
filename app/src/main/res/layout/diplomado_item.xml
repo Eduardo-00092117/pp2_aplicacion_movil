@@ -6,6 +6,7 @@
     android:id="@+id/diplomado_item"
     android:paddingHorizontal="@dimen/big_padding"
     android:paddingVertical="@dimen/small_padding">
+
     <TextView
         android:id="@+id/diplomado_item_name"
         android:layout_width="match_parent"
