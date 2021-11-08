@@ -51,7 +51,7 @@ class ProductsFragment : Fragment() {
     }
 
     fun onClicked(item: Producto) {
-        
+
     }
 
     override fun onDestroyView() {
