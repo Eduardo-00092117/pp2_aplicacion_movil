@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:elevation="5dp"
     android:layout_gravity="center"
-    android:background="@color/white"
     tools:context=".ui.activities.AdminActivity">
         <TextView
             android:layout_width="match_parent"

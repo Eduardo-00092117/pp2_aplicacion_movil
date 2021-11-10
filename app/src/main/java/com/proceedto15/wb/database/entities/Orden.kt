@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "orden")
 data class Orden (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val idCliente: Int,
     val fecha: String,
