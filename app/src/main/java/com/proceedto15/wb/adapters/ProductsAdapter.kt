@@ -3,6 +3,7 @@ package com.proceedto15.wb.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
@@ -32,9 +33,9 @@ class ProductsAdapter(var productos: List<Producto>, val clickListener: (Product
 
         fun bind(item: Producto, clcikListener: (Producto) -> Unit) = with(itemView) {
             itemView.findViewById<TextView>(R.id.product_item_name).text = item.nombre
-            itemView.findViewById<TextView>(R.id.product_item_desc).text = item.descripcion
+            //itemView.findViewById<TextView>(R.id.product_item_desc).text = item.descripcion
             itemView.findViewById<TextView>(R.id.product_item_stock).text = "$"+item.precio.toString()
-            this.setOnClickListener{clcikListener(item)}
+            itemView.findViewById<ImageView>(R.id.product_item).setOnClickListener{clcikListener(item)}
         }
     }
 }
