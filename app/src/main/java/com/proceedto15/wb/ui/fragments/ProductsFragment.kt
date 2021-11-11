@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.NumberPicker
 import android.widget.PopupWindow
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -43,16 +44,21 @@ class ProductsFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: ProductsAdapter
     private lateinit var ordenViewModel: OrdenViewModel
+    private lateinit var builder: AlertDialog.Builder
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
 
+        initData()
         changeList()
         initRecycler(emptyList())
 
-        return root
+        return binding.root
+    }
+
+    fun initData(){
+        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
+        builder = AlertDialog.Builder(requireContext())
     }
 
     fun initRecycler(list: List<Producto>) {
@@ -72,28 +78,26 @@ class ProductsFragment : Fragment() {
     }
 
     fun onClicked(item: Producto) {
-        Log.d("xD", item.nombre)
-        val popup = FragmentProductsBinding.inflate(LayoutInflater.from(requireContext()))
-        val builder = AlertDialog.Builder(requireContext())
-        //builder.setTitle("Mensaje")
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_product, null)
+
         builder.setMessage("Desea agregar el producto "+ '"' + item.nombre + '"' + " al carrito de compras?")
-        builder.setPositiveButton("Agregar",
-        DialogInterface.OnClickListener{
-            dialog, id->
+        builder.setView(dialogView)
+        val nPicker = dialogView.findViewById<NumberPicker>(R.id.product_picker)
+        nPicker.minValue = 1
+        nPicker.maxValue = item.existencia
+
+        builder.setPositiveButton(getString(R.string.add), DialogInterface.OnClickListener{ dialog, id ->
             ordenViewModel.insertOrden(Orden(0,1,SimpleDateFormat("dd/MM/yyyy").format(Date()),SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time) ,false))
             ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
-            val intent : Intent = Intent(requireContext(), CartActivity::class.java)
+            val intent = Intent(context, CartActivity::class.java)
             startActivity(intent)
-
         })
-        builder.setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, i ->
+        builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
             dialog.cancel()
         })
-        val alert : AlertDialog? = builder.setView(popup.root)
-            .setCancelable(false)
-            .create()
-        alert?.show()
 
+        val alert = builder.create()
+        alert?.show()
     }
 
     override fun onDestroyView() {
