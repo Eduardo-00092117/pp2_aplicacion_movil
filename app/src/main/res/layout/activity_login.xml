@@ -37,7 +37,8 @@
 
     <Button
         android:id="@+id/cirLoginButton"
-        style="@style/loginButton"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:text="@string/login_txt" />
