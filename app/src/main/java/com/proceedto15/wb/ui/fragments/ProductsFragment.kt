@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -57,6 +58,9 @@ class ProductsFragment : Fragment() {
 
     fun onClicked(item: Producto) {
         Log.d("xD", item.nombre)
+        /*val np = NumberPicker(context)
+        np.maxValue = 100
+        np.minValue = 0
         val popup = FragmentProductsBinding.inflate(LayoutInflater.from(requireContext()))
         val builder = AlertDialog.Builder(requireContext())
         //builder.setTitle("Mensaje")
@@ -65,7 +69,7 @@ class ProductsFragment : Fragment() {
         DialogInterface.OnClickListener{
             dialog, id->
             ordenViewModel.insertOrden(Orden(0,1,SimpleDateFormat("dd/MM/yyyy").format(Date()),SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time) ,false))
-            ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
+            ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, np.value, item.precio, item.precio*np.value))
             //val intent : Intent = Intent(requireContext(), CartActivity::class.java)
             //startActivity(intent)
 
@@ -73,10 +77,10 @@ class ProductsFragment : Fragment() {
         builder.setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, i ->
             dialog.cancel()
         })
-        val alert : AlertDialog? = builder.setView(popup.root)
-            .setCancelable(false)
+        val alert : AlertDialog? = builder.setView(np)
+            .setCancelable(true)
             .create()
-        alert?.show()
+        alert?.show()*/
 
     }
 
