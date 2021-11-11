@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.ServicesAdapter
 import com.proceedto15.wb.database.entities.Servicio
 import com.proceedto15.wb.database.viewmodels.CitaViewModel
@@ -59,8 +61,13 @@ class ReservationFragment : Fragment() {
     }
 
     val reservationClickListener = View.OnClickListener {
-        val intent = Intent(context, CitaActivity::class.java).putExtra(SELECTED_SERVICES_KEY, binding.selectedServices.toString())
-        startActivity(intent)
+        if(binding.selectedServices.text.toString() != "") {
+            val intent = Intent(context, CitaActivity::class.java).putExtra(SELECTED_SERVICES_KEY, binding.selectedServices.text.toString())
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(context, getString(R.string.select_services), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {
