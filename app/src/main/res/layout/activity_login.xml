@@ -34,14 +34,28 @@
           android:maxLines="1"
           android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/registerAction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <Button
+        android:id="@+id/cirLoginButton"
+        style="@style/loginButton"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/loginViewsMargin"
-        android:text="@string/login_signup_hint"
-        android:textAlignment="center"
-        android:textColor="@color/golden"/>
+        android:text="@string/login_txt" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+
+    <Button
+        android:id="@+id/registerAction"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Registrate gratis" />
+
     <TextView
         android:id="@+id/googleAction"
         android:layout_width="match_parent"
@@ -50,11 +64,6 @@
         android:text="@string/login_with_google"
         android:textAlignment="center"
         android:textColor="@color/golden"/>
-    <Button
-        android:id="@+id/cirLoginButton"
-        style="@style/loginButton"
-        android:text="@string/login_txt"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
+
   </LinearLayout>
 </ScrollView>
