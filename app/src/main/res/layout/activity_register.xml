@@ -3,8 +3,7 @@
     android:id="@+id/login_child_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/white">
+    android:layout_gravity="center">
     <LinearLayout
         style="@style/linearParent"
         android:layout_gravity="center"
