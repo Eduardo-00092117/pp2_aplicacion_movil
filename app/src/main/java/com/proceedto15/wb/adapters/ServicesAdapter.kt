@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Servicio
@@ -34,10 +35,16 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
         fun bind(item: Servicio) = with(itemView) {
             itemView.findViewById<TextView>(R.id.service_item_name).text = item.nombre
             val view = itemView.findViewById<CheckBox>(R.id.service_item_check)
-            itemView.findViewById<CheckBox>(R.id.service_item_check).setOnClickListener{clcikListener(item, view)}
+            itemView.findViewById<TextView>(R.id.service_item_name).setOnClickListener{textClickListener(item, view)}
+            itemView.findViewById<CheckBox>(R.id.service_item_check).setOnClickListener{clickListener(item, view)}
         }
 
-        fun clcikListener(item: Servicio, check: CheckBox){
+        fun textClickListener(item: Servicio, check: CheckBox){
+            check.isChecked = check.isChecked == false
+            clickListener(item, check)
+        }
+
+        fun clickListener(item: Servicio, check: CheckBox){
             var time = totalTimeText.text.toString().toInt()
             val array = selectedServices.text.toString().split(",").toCollection(ArrayList())
             if(check.isChecked){
@@ -52,7 +59,8 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
                     array.remove(item.id.toString())
                 }
             }
-            selectedServices.text = array.joinToString(separator = ",")
+            selectedServices.text = array.joinToString(prefix = "", postfix = "", separator = ",")
+
             totalTimeText.text = time.toString()
         }
     }

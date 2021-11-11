@@ -6,12 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activities.DiplomadoInfoActivity">
-
     <TextView
         android:id="@+id/diplomado_info_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="hola"
         android:padding="@dimen/normal_padding">
     </TextView>
@@ -19,7 +17,6 @@
         android:id="@+id/diplomado_info_cupo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -29,7 +26,6 @@
         android:id="@+id/ddiplomado_info_lugar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -39,7 +35,6 @@
         android:id="@+id/ddiplomado_info_duracion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -49,7 +44,6 @@
         android:id="@+id/ddiplomado_info_fechaIni"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -59,7 +53,6 @@
         android:id="@+id/ddiplomado_info_FechaFin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -69,7 +62,6 @@
         android:id="@+id/ddiplomado_info_precio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
@@ -79,7 +71,6 @@
         android:id="@+id/ddiplomado_info_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:hint="holas"
         android:paddingStart="@dimen/normal_padding"
         android:paddingEnd="@dimen/normal_padding"
