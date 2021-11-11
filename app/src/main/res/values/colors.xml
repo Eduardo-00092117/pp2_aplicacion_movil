@@ -10,8 +10,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primaryDark">#1C1C1C</color>
-    <color name="Darkgolden">#6C644A</color>
-    <color name="golden">#B19C6D</color>
+    <color name="Darkgolden">#b67f06</color>
+    <color name="golden">#ce9007</color>
 
     <color name="loginBkColor">#F0F0F0</color>
 </resources>
