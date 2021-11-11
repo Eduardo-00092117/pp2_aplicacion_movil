@@ -31,6 +31,8 @@ class CartAdapter(var orden: List<OrdenDetalle>, val clickListener: (OrdenDetall
     inner class CartHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: OrdenDetalle, clickListener: (OrdenDetalle) -> Unit) = with(itemView){
+            itemView.findViewById<TextView>(R.id.cantidad_producto).text = item.cantidad.toString()
+            itemView.findViewById<TextView>(R.id.total_orden).text = item.total.toString()
             this.setOnClickListener{clickListener(item)}
         }
     }

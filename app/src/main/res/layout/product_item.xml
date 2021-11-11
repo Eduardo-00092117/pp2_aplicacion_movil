@@ -21,7 +21,6 @@
             android:layout_toLeftOf="@id/product_item_stock"
             android:paddingLeft="5dp"
             android:paddingBottom="@dimen/normal_padding"
-            android:textColor="@color/white"
             android:textSize="15dp" />
         <TextView
             android:id="@+id/product_item_desc"
@@ -31,7 +30,6 @@
             android:layout_gravity="center"
             android:paddingLeft="5dp"
             android:paddingBottom="@dimen/normal_padding"
-            android:textColor="@color/white"
             android:textSize="10sp" />
         <TextView
             android:id="@+id/product_item_stock"

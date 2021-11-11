@@ -25,6 +25,7 @@ class CartActivity : AppCompatActivity() {
         val view =_binding.root
         setContentView(view)
         initData()
+        changelist()
         initRecycler(emptyList())
     }
 
@@ -42,8 +43,12 @@ class CartActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
 
-
+    fun changelist(){
+        ordenViewModel.allOrdenDetalle.observe(this, {match ->
+            viewAdapter.dataChange(match)
+        })
     }
 
     fun onClicked(item: OrdenDetalle){
