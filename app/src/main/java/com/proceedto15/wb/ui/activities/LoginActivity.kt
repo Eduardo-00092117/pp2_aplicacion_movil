@@ -103,7 +103,6 @@ class LoginActivity : AppCompatActivity() {
     val registerClickListener = View.OnClickListener {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     val loginWithGoogleClickListener = View.OnClickListener {
