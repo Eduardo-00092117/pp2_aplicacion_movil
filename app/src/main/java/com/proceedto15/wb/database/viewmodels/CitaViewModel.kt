@@ -92,17 +92,17 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
 
     fun getCliente(id: Int) = repository.getCliente(id)
 
-    fun getClientePorUsuario(idUser: Int) =
-        repository.getClienteByUser(idUser)
+    fun getClientePorUsuario(idUser: Int) = repository.getClienteByUser(idUser)
 
     fun getUsuario(id: Int) = repository.getUsuario(id)
 
-    fun getUsuarioPorEmail(email: String) =
-        repository.getUsuarioPorEmail(email)
+    fun getUsuarioPorEmail(email: String) = repository.getUsuarioPorEmail(email)
 
     fun getEmpleado(id: Int) = repository.getEmpleado(id)
 
     fun getEmpleadoXServicio(id: Int) = repository.getEmpleadoXServicio(id)
+
+    fun getEmpleadosPorServicio(id: Int) = repository.getEmpleadosPorServicio(id)
 
     // Delete 1
 
@@ -110,6 +110,7 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
     fun deleteOneCita(id: Int) = viewModelScope.launch(Dispatchers.IO){
         repository!!.deleteOneCita(id)
     }
+
     // NukeTables
 
     private suspend fun nukeCita() = repository.nukeCita()

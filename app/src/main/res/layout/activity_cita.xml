@@ -3,12 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.CitaActivity">
-    <Spinner
-        android:id="@+id/employee_spinner"
+    tools:context=".ui.activities.CitaActivity"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/big_padding"
-        android:layout_marginTop="@dimen/normal_padding" />
-
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/big_padding">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text_size"
+            android:layout_marginTop="15dp"
+            android:text="@string/stylist"/>
+        <Spinner
+            android:id="@+id/employee_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/normal_padding">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_days"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <FrameLayout
+            android:id="@+id/fragment_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </LinearLayout>
