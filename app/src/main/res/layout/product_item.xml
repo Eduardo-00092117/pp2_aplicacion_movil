@@ -54,7 +54,8 @@
                 android:layout_width="@dimen/add_product_dimen"
                 android:layout_height="@dimen/add_product_dimen"
                 android:layout_alignParentEnd="true"
-                app:srcCompat="@drawable/ic_baseline_add_shopping_cart_24" />
+                app:srcCompat="@drawable/ic_baseline_add_shopping_cart_24"
+                android:background="?selectableItemBackgroundBorderless"/>
         </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
