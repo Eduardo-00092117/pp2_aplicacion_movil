@@ -53,4 +53,6 @@
     <string name="stylist">Estilista:</string>
     <string name="select_services_text">Seleccione los servicios que sean de su preferencia</string>
     <string name="estimated_time">Tiempo estimado:</string>
+    <string name="total_text">Total:</string>
+    <string name="pay_now_text">Pagar ahora</string>
 </resources>

@@ -26,4 +26,5 @@
     <dimen name="add_product_dimen">32dp</dimen>
     <dimen name="service_dimen">140dp</dimen>
     <dimen name="ultra_super_big_padding">50dp</dimen>
+    <dimen name="product_dimen">108dp</dimen>
 </resources>
