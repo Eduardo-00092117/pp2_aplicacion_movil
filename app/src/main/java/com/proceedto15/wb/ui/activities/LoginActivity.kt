@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,6 +20,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.proceedto15.wb.R
+import com.proceedto15.wb.database.entities.Cliente
+import com.proceedto15.wb.database.entities.Usuario
+import com.proceedto15.wb.database.viewmodels.CitaViewModel
 import com.proceedto15.wb.utilities.AppConstants.RC_SIGN_IN
 
 class LoginActivity : AppCompatActivity() {
@@ -30,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var emailBox: EditText
     private lateinit var pswdBox: EditText
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var citaViewModel: CitaViewModel
+    private var user: Usuario = Usuario(0,"","")
+    private var client: Cliente = Cliente(0,0,"", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun initData(){
         mAuth = FirebaseAuth.getInstance()
-
+        citaViewModel = ViewModelProvider(this).get(CitaViewModel::class.java)
         loginBtn = findViewById(R.id.cirLoginButton)
         registerBtn = findViewById(R.id.registerAction)
         googleBtn = findViewById(R.id.googleAction)
@@ -83,9 +90,42 @@ class LoginActivity : AppCompatActivity() {
                     val intent : Intent
                     if(mAuth.currentUser?.email == "jsreyes3248@gmail.com"){
                         intent = Intent(this, AdminActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                     else {
+                        //Busqueda del usuario en la base de datos
+                        /*var temp = citaViewModel.getUsuarioPorEmail(emailBox.text.toString())
+                        temp.observe(this, {
+                            //insertData(it)
+                            var temp2 = citaViewModel.getClientePorUsuario(it.id)
+                            temp2.observe(this, {
+                                Log.d("username", it.idUsuario.toString() + " "+ it.nombre)
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.putExtra("id", it.id)
+                                startActivity(intent)
+                                finish()
+                            })
+                        })*/
+                        /*Log.d("username", user.usuario + " " + user.id.toString())
+                        citaViewModel.allUsuario.observe(this, {
+                            it.forEach {
+                                Log.d("users", it.id.toString() + " " + it.usuario)
+                            }
+                        })
+                        citaViewModel.allCliente.observe(this, {
+                            it.forEach {
+                                Log.d("clients", it.id.toString() + " " + it.idUsuario.toString() + " " + it.nombre)
+                            }
+                        })*/
+                        /*var temp2 = citaViewModel.getClientePorUsuario(user.id)
+                        temp2.observe(this, {
+                            Log.d("user", it.nombre)
+                            client = it
+                        })*/
+                        /*Log.d("Success", "search successful")*/
                         intent = Intent(this, MainActivity::class.java)
+                        //intent.putExtra("id", client.id)
                     }
                     startActivity(intent)
                     finish()
@@ -139,5 +179,10 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, getString(R.string.google_problem), Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    fun insertData(data: Usuario){
+        user = data
+        //Log.d("username", user.id.toString())
     }
 }

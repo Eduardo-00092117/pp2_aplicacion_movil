@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.R
@@ -49,7 +50,7 @@ class ReservationFragment : Fragment() {
         viewAdapter = ServicesAdapter(list, binding.totalTimeText, binding.selectedServices)
         binding.recyclerServices.apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
+            layoutManager = GridLayoutManager(this.context, 2)
             adapter = viewAdapter
         }
     }

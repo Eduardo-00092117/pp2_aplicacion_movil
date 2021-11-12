@@ -92,9 +92,13 @@ class CitaViewModel(private val app: Application) : AndroidViewModel(app){
 
     fun getCliente(id: Int) = repository.getCliente(id)
 
+    fun getClientePorUsuario(idUser: Int) =
+        repository.getClienteByUser(idUser)
+
     fun getUsuario(id: Int) = repository.getUsuario(id)
 
-    fun getUsuarioPorEmail(email: String) = repository.getUsuarioPorEmail(email)
+    fun getUsuarioPorEmail(email: String) =
+        repository.getUsuarioPorEmail(email)
 
     fun getEmpleado(id: Int) = repository.getEmpleado(id)
 

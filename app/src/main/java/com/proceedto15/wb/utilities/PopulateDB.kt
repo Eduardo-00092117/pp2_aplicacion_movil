@@ -28,6 +28,7 @@ class PopulateDB(context: ViewModelStoreOwner) {
 
         populateCita()
         populateCliente()
+        populateOrdenDetalle()
     }
 
     fun populateCategoria(){
@@ -138,5 +139,9 @@ class PopulateDB(context: ViewModelStoreOwner) {
         citaViewModel.insertCita(Cita(2, 1, "26 de Nov 2021", "15:00"))
         citaViewModel.insertCita(Cita(3, 1, "27 de Nov 2021", "15:00"))
 
+    }
+
+    fun populateOrdenDetalle(){
+        ordenViewModel.insertOrdenDetalle(OrdenDetalle(1,1,1,3,14.99F, 44.97F))
     }
 }

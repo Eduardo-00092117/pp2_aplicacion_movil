@@ -6,12 +6,14 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.common.api.Api
 import com.google.firebase.auth.FirebaseAuth
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Cliente
@@ -31,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var pswdBox: EditText
     private lateinit var birthday: String
     private lateinit var citaViewModel: CitaViewModel
+    private  var client: Cliente = Cliente(0,0, "","", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +72,18 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     val registerClickListener = View.OnClickListener {
+
+        //Introduciendo al usuario a la base de datos
+        /*citaViewModel.insertUsuario(Usuario(0, emailBox.text.toString(),pswdBox.text.toString()))
+        val temp = citaViewModel.getUsuarioPorEmail(emailBox.text.toString())
+        temp.observe(this, {
+            Log.d("idU", it.id.toString() + " " + it.usuario)
+            citaViewModel.insertCliente(Cliente(0, it.id, nameBox.text.toString(), lastNameBox.text.toString(), birthdayBox.text.toString()))
+        })*/
+
+        //citaViewModel.insertCliente(Cliente(0, user!!.id, nameBox.text.toString(), lastNameBox.text.toString(), birthdayBox.text.toString()))
+        //Log.d("insert success", "Inserted")
+
         //Se obtiene el correo electrónico y la contraseña
         val email = emailBox.text.toString()
         val pass = pswdBox.text.toString()
@@ -89,8 +104,10 @@ class RegisterActivity : AppCompatActivity() {
         if(activeNetwork != null && activeNetwork.isConnected){
             mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
+                    //intent.putExtra("id", client.id)
                     startActivity(intent)
                     finish()
                 }

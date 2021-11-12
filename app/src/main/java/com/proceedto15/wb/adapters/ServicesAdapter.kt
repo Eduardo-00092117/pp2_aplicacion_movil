@@ -33,9 +33,8 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
     inner class ServiceHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Servicio) = with(itemView) {
-            itemView.findViewById<TextView>(R.id.service_item_name).text = item.nombre
+            itemView.findViewById<CheckBox>(R.id.service_item_check).text = item.nombre
             val view = itemView.findViewById<CheckBox>(R.id.service_item_check)
-            itemView.findViewById<TextView>(R.id.service_item_name).setOnClickListener{textClickListener(item, view)}
             itemView.findViewById<CheckBox>(R.id.service_item_check).setOnClickListener{clickListener(item, view)}
         }
 
@@ -60,7 +59,7 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
                 }
             }
             selectedServices.text = array.joinToString(prefix = "", postfix = "", separator = ",")
-
+            //check.text = "Hola"
             totalTimeText.text = time.toString()
         }
     }

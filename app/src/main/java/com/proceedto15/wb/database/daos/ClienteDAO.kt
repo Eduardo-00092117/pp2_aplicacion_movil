@@ -18,6 +18,9 @@ interface ClienteDAO {
     @Query("SELECT * FROM cliente WHERE id = :id")
     fun getCliente(id: Int): LiveData<Cliente>
 
+    @Query("SELECT * FROM cliente WHERE idUsuario = :idUser")
+    fun getClienteByUser(idUser: Int): LiveData<Cliente>
+
     @Query("DELETE FROM cliente")
     suspend fun nukeTable()
 }
