@@ -17,7 +17,7 @@ class DaysAdapter(var days: List<String>, var weekDays: List<String>, val clickL
     }
 
     override fun onBindViewHolder(holder: DayHolder, pos: Int) {
-        holder.bind(days[pos], weekDays[pos], clickListener)
+        holder.bind(days[pos], weekDays[pos])
     }
 
     override fun getItemCount() = days.size
@@ -29,7 +29,7 @@ class DaysAdapter(var days: List<String>, var weekDays: List<String>, val clickL
 
     inner class DayHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(day: String, weekDay: String, clcikListener: (String) -> Unit) = with(itemView) {
+        fun bind(day: String, weekDay: String) = with(itemView) {
             itemView.findViewById<TextView>(R.id.day_item_number).text = day
             itemView.findViewById<TextView>(R.id.day_item_text).text = weekDay
             this.setOnClickListener{clickListener(weekDay)}
