@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:id="@+id/diplomado_item"
-    android:paddingHorizontal="@dimen/big_padding"
-    android:paddingVertical="@dimen/small_padding">
-    <TextView
-        android:id="@+id/diplomado_item_name"
+    android:layout_margin="@dimen/small_padding"
+    app:cardCornerRadius="@dimen/small_padding">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:paddingBottom="@dimen/small_padding"
-        android:textSize="@dimen/normal_text_size" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/diplomado_item_name">
+        android:paddingHorizontal="@dimen/normal_small_padding"
+        android:paddingVertical="@dimen/normal_small_padding">
         <TextView
-            android:id="@+id/diplomado_item_start_date"
-            android:layout_width="wrap_content"
+            android:id="@+id/diplomado_item_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/super_small_text_size" />
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="@dimen/small_padding"
+            android:textColor="@color/Lightgolden"
+            android:textSize="@dimen/normal_text_size" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray"
-            android:text="@string/dash_text"
-            android:textSize="@dimen/super_small_text_size"
-            android:layout_marginHorizontal="@dimen/small_padding"/>
-        <TextView
-            android:id="@+id/diplomado_item_finish_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/super_small_text_size" />
-    </LinearLayout>
-</RelativeLayout>
+            android:orientation="horizontal"
+            android:layout_below="@id/diplomado_item_name">
+            <TextView
+                android:id="@+id/diplomado_item_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/super_small_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="@string/dash_text"
+                android:textSize="@dimen/super_small_text_size"
+                android:layout_marginHorizontal="@dimen/small_padding"/>
+            <TextView
+                android:id="@+id/diplomado_item_finish_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/super_small_text_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
