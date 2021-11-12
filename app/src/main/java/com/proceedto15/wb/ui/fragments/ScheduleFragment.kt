@@ -21,7 +21,6 @@ class ScheduleFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d("hola", day)
         if(day == getString(R.string.tuesday) || day == getString(R.string.friday)) return inflater.inflate(R.layout.fragment_schedule_variant_1, container, false)
         else if(day == getString(R.string.wednesday) || day == getString(R.string.saturday)) return inflater.inflate(R.layout.fragment_schedule_variant_2, container, false)
         return inflater.inflate(R.layout.fragment_schedule, container, false)
