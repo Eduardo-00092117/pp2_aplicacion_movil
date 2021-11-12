@@ -36,7 +36,7 @@ class CartAdapter(/*var orden: List<OrdenDetalle>*/var orden: MutableList<Ordene
     inner class CartHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(/*item: OrdenDetalle*/item: Ordenes, clickListener: (Ordenes) -> Unit) = with(itemView){
-            val media = "https://i0.wp.com/www.senpai.com.mx/wp-content/uploads/2021/04/Fortnite-presenta-la-skin-Diamond-Hanz-inspirada-en-el-meme-Stonks.png?w=1280&ssl=1"
+           /** val media = "https://i.redd.it/vf0049c6gn531.jpg"
             val image = itemView.findViewById<ImageView>(R.id.images)
             if (media !==null) {
                 Glide.with(this)
@@ -44,10 +44,10 @@ class CartAdapter(/*var orden: List<OrdenDetalle>*/var orden: MutableList<Ordene
                     .into(image)
             } else {
                 image.setImageResource(R.drawable.ic_launcher_background)
-            }
+            }**/
             itemView.findViewById<ImageView>(R.id.images)
             itemView.findViewById<TextView>(R.id.id_producto).text = item.nombreProducto
-            itemView.findViewById<TextView>(R.id.cantidad_producto).text = "Qty: "+item.Qty.toString()
+            itemView.findViewById<TextView>(R.id.cantidad_producto).text = "Cantidad: "+item.Qty.toString()
             itemView.findViewById<TextView>(R.id.total_orden).text = "$"+item.TotalPrice.toString()
             itemView.findViewById<ImageView>(R.id.cross).setOnClickListener{deleteOrder( item)}
             this.setOnClickListener{clickListener(item)}
