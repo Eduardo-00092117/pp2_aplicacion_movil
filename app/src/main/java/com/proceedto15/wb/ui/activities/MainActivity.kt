@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
             R.id.shopping_cart -> {
                 val intent = Intent(this, CartActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         }
 

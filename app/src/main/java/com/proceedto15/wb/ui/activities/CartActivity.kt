@@ -64,8 +64,8 @@ class CartActivity : AppCompatActivity() {
     }
 
     fun fillList(){
-        ordenes.add(Ordenes("Champu de hombre", 2, 14.99F, 2*14.99F))
-        ordenes.add(Ordenes("Champu de mujer", 3, 19.99F, 3*19.99F))
+        ordenes.add(Ordenes("Shampoo control caspa.", 2, 14.99F, 2*14.99F))
+        ordenes.add(Ordenes("Shampoo con acondicionador.", 3, 19.99F, 3*19.99F))
         var i = 0F
         ordenes.forEach {
             i += it.TotalPrice
