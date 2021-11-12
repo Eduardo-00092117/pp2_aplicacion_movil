@@ -31,8 +31,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_services"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/total_time_section"
