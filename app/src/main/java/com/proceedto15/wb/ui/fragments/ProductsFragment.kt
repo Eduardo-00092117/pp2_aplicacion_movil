@@ -2,10 +2,24 @@ package com.proceedto15.wb.ui.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.proceedto15.wb.R
+import com.proceedto15.wb.ui.activities.CartActivity
+
+
 import android.view.*
 import android.widget.NumberPicker
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,16 +42,21 @@ class ProductsFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: ProductsAdapter
     private lateinit var ordenViewModel: OrdenViewModel
+    private lateinit var builder: AlertDialog.Builder
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
 
+        initData()
         changeList()
         initRecycler(emptyList())
 
-        return root
+        return binding.root
+    }
+
+    fun initData(){
+        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
+        builder = AlertDialog.Builder(requireContext())
     }
 
     fun initRecycler(list: List<Producto>) {
@@ -63,25 +82,39 @@ class ProductsFragment : Fragment() {
         np.minValue = 0
         val popup = FragmentProductsBinding.inflate(LayoutInflater.from(requireContext()))
         val builder = AlertDialog.Builder(requireContext())
-        //builder.setTitle("Mensaje")
+        //builder.setTitle("Mensaje")*/
+
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_product, null)
+
+
         builder.setMessage("Desea agregar el producto "+ '"' + item.nombre + '"' + " al carrito de compras?")
-        builder.setPositiveButton("Agregar",
-        DialogInterface.OnClickListener{
-            dialog, id->
+        builder.setView(dialogView)
+        val nPicker = dialogView.findViewById<NumberPicker>(R.id.product_picker)
+        nPicker.minValue = 1
+        nPicker.maxValue = item.existencia
+        builder.setPositiveButton(getString(R.string.add), DialogInterface.OnClickListener{ dialog, id ->
             ordenViewModel.insertOrden(Orden(0,1,SimpleDateFormat("dd/MM/yyyy").format(Date()),SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time) ,false))
-            ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, np.value, item.precio, item.precio*np.value))
+            /*ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, np.value, item.precio, item.precio*np.value))
             //val intent : Intent = Intent(requireContext(), CartActivity::class.java)
+            //startActivity(intent)*/
+
+            ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
+            Toast.makeText(context, "El producto fue agregado al carrito de compras", Toast.LENGTH_LONG).show()
+            //val intent = Intent(context, CartActivity::class.java)
             //startActivity(intent)
 
         })
-        builder.setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, i ->
+        builder.setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id ->
             dialog.cancel()
         })
-        val alert : AlertDialog? = builder.setView(np)
+
+        /*val alert : AlertDialog? = builder.setView(np)
             .setCancelable(true)
             .create()
         alert?.show()*/
 
+        val alert = builder.create()
+        alert?.show()
     }
 
     override fun onDestroyView() {
