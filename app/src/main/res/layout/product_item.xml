@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="50dp">
+            android:layout_marginBottom="@dimen/ultra_super_big_padding">
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="122dp"
