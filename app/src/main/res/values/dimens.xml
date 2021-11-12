@@ -10,6 +10,7 @@
     <dimen name="loginViewsMargin">20dp</dimen>
     <dimen name="login_small_margin">5dp</dimen>
 
+    <dimen name="super_small_padding">2dp</dimen>
     <dimen name="small_padding">5dp</dimen>
     <dimen name="normal_small_padding">7dp</dimen>
     <dimen name="normal_padding">10dp</dimen>
@@ -23,4 +24,6 @@
     <dimen name="stock_width">40dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="add_product_dimen">32dp</dimen>
+    <dimen name="service_dimen">140dp</dimen>
+    <dimen name="ultra_super_big_padding">50dp</dimen>
 </resources>

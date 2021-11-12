@@ -50,4 +50,7 @@
     <string name="saturday">Sábado</string>
 
     <string name="my_web_client_id">1054757233267-8u65ke5domjoej4d8maufp4otndtf15a.apps.googleusercontent.com</string>
+    <string name="stylist">Estilista:</string>
+    <string name="select_services_text">Seleccione los servicios que sean de su preferencia</string>
+    <string name="estimated_time">Tiempo estimado:</string>
 </resources>
