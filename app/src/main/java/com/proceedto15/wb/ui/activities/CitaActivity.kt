@@ -151,7 +151,7 @@ class CitaActivity : AppCompatActivity() {
     }
 
     fun onClicked(day: String){
-        val frag = ScheduleFragment()
+        val frag = ScheduleFragment.newInstance(day)
         changeFragment(R.id.fragment_schedule, frag)
     }
 

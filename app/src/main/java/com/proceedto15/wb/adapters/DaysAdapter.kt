@@ -32,7 +32,7 @@ class DaysAdapter(var days: List<String>, var weekDays: List<String>, val clickL
         fun bind(day: String, weekDay: String, clcikListener: (String) -> Unit) = with(itemView) {
             itemView.findViewById<TextView>(R.id.day_item_number).text = day
             itemView.findViewById<TextView>(R.id.day_item_text).text = weekDay
-            this.setOnClickListener{clickListener(day)}
+            this.setOnClickListener{clickListener(weekDay)}
         }
     }
 }
