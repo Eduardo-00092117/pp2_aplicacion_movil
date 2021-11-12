@@ -71,7 +71,7 @@ class PopulateDB(context: ViewModelStoreOwner) {
 
     fun populateServicio(){
         citaViewModel.insertServicio(Servicio(1, 1, "Corte de cabello", 15, "Corte de cabello"))
-        citaViewModel.insertServicio(Servicio(2, 1, "PLanchado de cabello", 30, "Planchado de cabello"))
+        citaViewModel.insertServicio(Servicio(2, 1, "Planchado de cabello", 30, "Planchado de cabello"))
         citaViewModel.insertServicio(Servicio(3, 1, "Lavado de cabello", 10, "Lavado de cabello"))
         citaViewModel.insertServicio(Servicio(4, 1, "Secado de cabello", 30, "Secado de cabello"))
         citaViewModel.insertServicio(Servicio(5, 1, "Tintado de cabello", 60, "Tintado de cabello con el color de su preferencia"))
