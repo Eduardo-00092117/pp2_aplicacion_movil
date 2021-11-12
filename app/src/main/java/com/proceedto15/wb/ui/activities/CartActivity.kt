@@ -12,6 +12,7 @@ import com.proceedto15.wb.Models.Ordenes
 import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.CartAdapter
 import com.proceedto15.wb.database.entities.OrdenDetalle
+import com.proceedto15.wb.database.entities.Pedidos
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.CartActivityBinding
 
@@ -31,7 +32,7 @@ class CartActivity : AppCompatActivity() {
         val view =_binding.root
         setContentView(view)
         initData()
-        //changelist()
+        changelist()
         fillList()
         initRecycler(emptyList())
     }
@@ -42,10 +43,11 @@ class CartActivity : AppCompatActivity() {
     }
 
 
-    fun initRecycler(list: List<OrdenDetalle>){
+    fun initRecycler(list: List<Pedidos>){
         viewManager = LinearLayoutManager(this)
         //viewAdapter = CartAdapter(list, ordenDetalleViewModel) { matchItem: OrdenDetalle -> onClicked(matchItem)}
-        viewAdapter = CartAdapter(ordenes, ordenDetalleViewModel) { matchItem: Ordenes -> onClicked(matchItem)}
+        //viewAdapter = CartAdapter(ordenes, ordenDetalleViewModel) { matchItem: Ordenes -> onClicked(matchItem)}
+        viewAdapter = CartAdapter(list, ordenDetalleViewModel) { matchItem: Pedidos -> onClicked(matchItem)}
         _binding.recyclerCart.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
@@ -53,29 +55,46 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
-    /*fun changelist(){
-        ordenViewModel.allOrdenDetalle.observe(this, {match ->
+    fun changelist(){
+        ordenViewModel.allPedidos.observe(this, {match ->
             viewAdapter.dataChange(match)
         })
-    }*/
+    }
 
-    fun onClicked(item: Ordenes){
-        ordenes.remove(item)
+    fun onClicked(item: Pedidos){
+        ordenViewModel.deleteOnePedido(item.id)
+        changelist()
+        //ordenes.remove(item)
     }
 
     fun fillList(){
-        ordenes.add(Ordenes("Shampoo control caspa.", 2, 14.99F, 2*14.99F))
+        /*ordenes.add(Ordenes("Shampoo control caspa.", 2, 14.99F, 2*14.99F))
         ordenes.add(Ordenes("Shampoo con acondicionador.", 3, 19.99F, 3*19.99F))
         var i = 0F
         ordenes.forEach {
             i += it.TotalPrice
-        }
-        findViewById<TextView>(R.id.total_cart).text = "$"+ i.toString()
+        }*/
+        ordenViewModel.allPedidos.observe(this,{
+            var i = 0F
+            it.forEach {
+                i += it.TotalPrice
+            }
+            findViewById<TextView>(R.id.total_cart).text = "$"+ i.toString()
+            if (it.isEmpty()){
+                Toast.makeText(this, "El carrito se encuentra vacio", Toast.LENGTH_LONG).show()
+            } else {
+                findViewById<TextView>(R.id.payment).setOnClickListener {
+                    Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+            }
+        })
+        /*findViewById<TextView>(R.id.total_cart).text = "$"+ i.toString()
         findViewById<TextView>(R.id.payment).setOnClickListener {
             Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }
+        }*/
 
     }
 

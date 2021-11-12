@@ -11,6 +11,7 @@ class OrdenRepository (
     private val OrdenDetalleDAO: OrdenDetalleDAO,
     private val ProductoDAO: ProductoDAO,
     private val CategoriaProductoDAO: CategoriaProductoDAO,
+    private val PedidosDAO: PedidosDAO,
     private val MarcaDAO: MarcaDAO,
     private val HistorialVentaDAO: HistorialVentaDAO) {
 
@@ -21,6 +22,7 @@ class OrdenRepository (
     val allCategoriaProducto: LiveData<List<CategoriaProducto>> = CategoriaProductoDAO.getAllCategoriaProducto()
     val allMarca: LiveData<List<Marca>> = MarcaDAO.getAllMarca()
     val allHistorialVenta: LiveData<List<HistorialVenta>> = HistorialVentaDAO.getAllHistorialVenta()
+    val allPedidos: LiveData<List<Pedidos>> = PedidosDAO.getAllPedidos()
 
     // INSERTS
 
@@ -39,6 +41,10 @@ class OrdenRepository (
     @WorkerThread
     suspend fun insertProducto(producto: Producto){
         ProductoDAO.insert(producto)
+    }
+    @WorkerThread
+    suspend fun insertPedidos(pedidos: Pedidos){
+        PedidosDAO.insert(pedidos)
     }
     @WorkerThread
     suspend fun insertCategoriaProducto(categoriaProducto: CategoriaProducto){
@@ -69,6 +75,11 @@ class OrdenRepository (
 
     fun getHistorialVenta(id: Int) = HistorialVentaDAO.getHistorialVenta(id)
 
+    fun getPedido(id: Int) = PedidosDAO.getPedido(id)
+
+    @WorkerThread
+    suspend fun deleteOnePedido(id: Int) = PedidosDAO.deleteOnePedido(id)
+
     // NukeTables
 
     @WorkerThread
@@ -98,5 +109,10 @@ class OrdenRepository (
     @WorkerThread
     suspend fun nukeHistorialVenta(){
         return HistorialVentaDAO.nukeTable()
+    }
+
+    @WorkerThread
+    suspend fun nukePedidos(){
+        return PedidosDAO.nukeTable()
     }
 }

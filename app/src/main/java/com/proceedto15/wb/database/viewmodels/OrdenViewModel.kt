@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.proceedto15.wb.database.RoomDB
+import com.proceedto15.wb.database.daos.PedidosDAO
 import com.proceedto15.wb.database.entities.*
 import com.proceedto15.wb.database.repositories.OrdenRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
     val allCategoriaProducto: LiveData<List<CategoriaProducto>>
     val allMarca: LiveData<List<Marca>>
     val allHistorialVenta: LiveData<List<HistorialVenta>>
+    val allPedidos: LiveData<List<Pedidos>>
 
     init {
         val PagoDAO = RoomDB.getDatabase(app).pagoDAO()
@@ -29,6 +31,7 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
         val CategoriaProductoDAO = RoomDB.getDatabase(app).categoriaProductoDAO()
         val MarcaDAO = RoomDB.getDatabase(app).marcaDAO()
         val HistorialVentaDAO = RoomDB.getDatabase(app).historialVentaDAO()
+        val PedidosDAO = RoomDB.getDatabase(app).pedidosDAO()
 
         repository = OrdenRepository(
             PagoDAO,
@@ -36,6 +39,7 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
             OrdenDetalleDAO,
             ProductoDAO,
             CategoriaProductoDAO,
+            PedidosDAO,
             MarcaDAO,
             HistorialVentaDAO
         )
@@ -45,6 +49,7 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
         allOrdenDetalle = repository.allOrdenDetalle
         allProducto = repository.allProducto
         allCategoriaProducto = repository.allCategoriaProducto
+        allPedidos = repository.allPedidos
         allMarca = repository.allMarca
         allHistorialVenta = repository.allHistorialVenta
     }
@@ -72,6 +77,13 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
     fun insertHistorialVenta(historialVenta: HistorialVenta) = viewModelScope.launch(Dispatchers.IO){
         repository.insertHistorialVenta(historialVenta)
     }
+    fun insertPedido(pedidos: Pedidos) = viewModelScope.launch(Dispatchers.IO){
+        repository.insertPedidos(pedidos)
+    }
+
+    fun deleteOnePedido(id: Int) = viewModelScope.launch(Dispatchers.Main){
+        repository!!.deleteOnePedido(id)
+    }
 
     // GETs
 
@@ -89,6 +101,8 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
 
     fun getHistorialVenta(id: Int) = repository.getHistorialVenta(id)
 
+    fun getPedido(id: Int) = repository.getPedido(id)
+
     // NukeTables
 
     private suspend fun nukePago() = repository.nukePago()
@@ -105,4 +119,5 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
 
     private suspend fun nukeHistorialVenta() = repository.nukeHistorialVenta()
 
+    private suspend fun nukePedido() = repository.nukePedidos()
 }

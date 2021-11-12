@@ -4,14 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.proceedto15.wb.R
+import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.ActivityMainBinding
 import com.proceedto15.wb.utilities.PopulateDB
 import com.proceedto15.wb.utilities.Preferences
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     private lateinit var firstTime: Preferences
+    private lateinit var ordenViewModel: OrdenViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +83,7 @@ class MainActivity : AppCompatActivity() {
     fun initData(){
         firstTime = Preferences(applicationContext)
         mAuth = FirebaseAuth.getInstance()
+        ordenViewModel = ViewModelProvider(this).get(OrdenViewModel::class.java)
     }
 
     fun ifFirstTime(){

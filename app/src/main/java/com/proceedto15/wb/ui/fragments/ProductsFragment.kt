@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.adapters.ProductsAdapter
 import com.proceedto15.wb.database.entities.Orden
 import com.proceedto15.wb.database.entities.OrdenDetalle
+import com.proceedto15.wb.database.entities.Pedidos
 import com.proceedto15.wb.database.entities.Producto
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.FragmentProductsBinding
@@ -93,12 +94,13 @@ class ProductsFragment : Fragment() {
         nPicker.minValue = 1
         nPicker.maxValue = item.existencia
         builder.setPositiveButton(getString(R.string.add), DialogInterface.OnClickListener{ dialog, id ->
-            ordenViewModel.insertOrden(Orden(0,1,SimpleDateFormat("dd/MM/yyyy").format(Date()),SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time) ,false))
+            //ordenViewModel.insertOrden(Orden(0,1,SimpleDateFormat("dd/MM/yyyy").format(Date()),SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time) ,false))
             /*ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, np.value, item.precio, item.precio*np.value))
             //val intent : Intent = Intent(requireContext(), CartActivity::class.java)
             //startActivity(intent)*/
 
-            ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
+            //ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
+            ordenViewModel.insertPedido(Pedidos(0,item.nombre, nPicker.value, item.precio ,nPicker.value*item.precio))
             Toast.makeText(context, "El producto fue agregado al carrito de compras", Toast.LENGTH_LONG).show()
             //val intent = Intent(context, CartActivity::class.java)
             //startActivity(intent)

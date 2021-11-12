@@ -25,7 +25,8 @@ import com.proceedto15.wb.database.entities.*
         Pago::class,
         Producto::class,
         Servicio::class,
-        Usuario::class),
+        Usuario::class,
+        Pedidos::class),
     version = 1)
 public abstract class RoomDB : RoomDatabase() {
 
@@ -46,6 +47,7 @@ public abstract class RoomDB : RoomDatabase() {
     abstract fun productoDAO(): ProductoDAO
     abstract fun servicioDAO(): ServicioDAO
     abstract fun usuarioDAO(): UsuarioDAO
+    abstract fun pedidosDAO(): PedidosDAO
 
     companion object{
 
