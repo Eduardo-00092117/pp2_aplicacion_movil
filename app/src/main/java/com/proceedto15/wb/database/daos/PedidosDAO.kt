@@ -23,5 +23,8 @@ interface PedidosDAO {
     suspend fun deleteOnePedido(id: Int)
 
     @Query("DELETE FROM pedidos")
+    suspend fun deleteAllPedido()
+
+    @Query("DELETE FROM pedidos")
     suspend fun nukeTable()
 }

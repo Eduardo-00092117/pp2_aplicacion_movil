@@ -78,6 +78,7 @@ class CartActivity : AppCompatActivity() {
                     Toast.makeText(this, "El carrito se encuentra vacio", Toast.LENGTH_SHORT).show()
                 }
                 else{
+                    ordenViewModel.deleteAllPedido()
                     Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
                 }

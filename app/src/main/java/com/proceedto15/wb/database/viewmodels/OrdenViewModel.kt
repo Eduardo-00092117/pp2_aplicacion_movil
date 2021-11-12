@@ -81,8 +81,14 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
         repository.insertPedidos(pedidos)
     }
 
+    // DELETES
+
     fun deleteOnePedido(id: Int) = viewModelScope.launch(Dispatchers.Main){
         repository!!.deleteOnePedido(id)
+    }
+
+    fun deleteAllPedido() = viewModelScope.launch(Dispatchers.Main){
+        repository!!.deleteAllPedido()
     }
 
     // GETs

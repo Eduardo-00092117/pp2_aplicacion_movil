@@ -77,8 +77,13 @@ class OrdenRepository (
 
     fun getPedido(id: Int) = PedidosDAO.getPedido(id)
 
+    // DELETES
+
     @WorkerThread
     suspend fun deleteOnePedido(id: Int) = PedidosDAO.deleteOnePedido(id)
+
+    @WorkerThread
+    suspend fun deleteAllPedido() = PedidosDAO.deleteAllPedido()
 
     // NukeTables
 
