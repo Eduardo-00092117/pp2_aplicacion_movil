@@ -81,6 +81,8 @@ class CitaRepository (
 
     fun getEmpleadoXServicio(id: Int) = empleadoXServicioDAO.getEmpleadoXServicio(id)
 
+    fun getEmpleadosPorServicio(id: Int) = servicioDAO.getEmpleadosPorServicio(id)
+
     // Delete 1
     @WorkerThread
     suspend fun deleteOneCita(id: Int) = citaDAO.deleteOneCita(id)
