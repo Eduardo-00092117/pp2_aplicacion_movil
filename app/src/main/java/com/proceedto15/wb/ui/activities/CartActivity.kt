@@ -80,7 +80,9 @@ class CartActivity : AppCompatActivity() {
                 else{
                     ordenViewModel.deleteAllPedido()
                     Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    val intent = Intent(this,PaymentActivity::class.java)
+                    intent.putExtra("value", findViewById<TextView>(R.id.total_cart).text)
+                    startActivity(Intent(this, PaymentActivity::class.java))
                 }
             }
         })

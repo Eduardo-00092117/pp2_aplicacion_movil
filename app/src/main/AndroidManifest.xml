@@ -13,6 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WB">
         <activity
+            android:name=".ui.activities.CashActivity"
+            android:exported="false"
+            android:label="@string/title_activity_cash"
+            android:theme="@style/Theme.WB.NoActionBar" />
+        <activity
+            android:name=".ui.activities.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.popup"
             android:exported="false" />
         <activity
@@ -39,7 +47,7 @@
         </activity>
         <activity
             android:name=".ui.activities.AdminActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.activities.AdminAddActivity"
             android:exported="true" />
