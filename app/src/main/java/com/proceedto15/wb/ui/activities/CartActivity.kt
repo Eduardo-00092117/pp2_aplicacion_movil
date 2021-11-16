@@ -2,6 +2,7 @@ package com.proceedto15.wb.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -81,7 +82,8 @@ class CartActivity : AppCompatActivity() {
                     ordenViewModel.deleteAllPedido()
                     Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,PaymentActivity::class.java)
-                    intent.putExtra("value", findViewById<TextView>(R.id.total_cart).text)
+                    //Log.d("Msg", findViewById<TextView>(R.id.total_cart).text.toString())
+                    intent.putExtra("value", findViewById<TextView>(R.id.total_cart).text.toString())
                     startActivity(Intent(this, PaymentActivity::class.java))
                 }
             }

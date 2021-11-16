@@ -37,7 +37,7 @@ class CartAdapter(var orden: List<Pedidos>, var viewModel: OrdenViewModel, val c
             itemView.findViewById<TextView>(R.id.cantidad_producto).text = "Cantidad: "+item.Qty.toString()
             itemView.findViewById<TextView>(R.id.total_orden).text = "$"+item.TotalPrice.toString()
             itemView.findViewById<ImageView>(R.id.cross).setOnClickListener{clickListener( item)}
-            this.setOnClickListener{clickListener(item)}
+            //this.setOnClickListener{clickListener(item)}
         }
     }
 }
