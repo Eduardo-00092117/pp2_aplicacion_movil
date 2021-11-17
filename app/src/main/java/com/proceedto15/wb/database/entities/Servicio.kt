@@ -11,4 +11,5 @@ data class Servicio (
     val nombre: String,
     val duracion_aprox: Int,
     val descripcion: String,
+    val url: String
 )

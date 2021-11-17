@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Producto
 
@@ -32,6 +33,7 @@ class ProductsAdapter(var productos: List<Producto>, val clickListener: (Product
     inner class ProductHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Producto, clcikListener: (Producto) -> Unit) = with(itemView) {
+            Glide.with(this).load(item.url).into(itemView.findViewById(R.id.imageView3))
             itemView.findViewById<TextView>(R.id.product_item_name).text = item.nombre
             //itemView.findViewById<TextView>(R.id.product_item_desc).text = item.descripcion
             itemView.findViewById<TextView>(R.id.product_item_stock).text = "$"+item.precio.toString()

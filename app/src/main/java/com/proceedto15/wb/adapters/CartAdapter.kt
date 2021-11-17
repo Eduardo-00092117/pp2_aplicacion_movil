@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Pedidos
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
@@ -33,6 +34,7 @@ class CartAdapter(var orden: List<Pedidos>, var viewModel: OrdenViewModel, val c
     inner class CartHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Pedidos, clickListener: (Pedidos) -> Unit) = with(itemView){
+            Glide.with(this).load(item.url).into(itemView.findViewById(R.id.image_cart))
             itemView.findViewById<TextView>(R.id.id_producto).text = item.PName
             itemView.findViewById<TextView>(R.id.cantidad_producto).text = "Cantidad: "+item.Qty.toString()
             itemView.findViewById<TextView>(R.id.total_orden).text = "$"+item.TotalPrice.toString()

@@ -100,7 +100,7 @@ class ProductsFragment : Fragment() {
             //startActivity(intent)*/
 
             //ordenViewModel.insertOrdenDetalle(OrdenDetalle(0, item.id, 0, 1, item.precio, item.precio))
-            ordenViewModel.insertPedido(Pedidos(0,item.nombre, nPicker.value, item.precio ,nPicker.value*item.precio))
+            ordenViewModel.insertPedido(Pedidos(0,item.nombre, nPicker.value, item.precio ,nPicker.value*item.precio, item.url))
             Toast.makeText(context, "El producto fue agregado al carrito de compras", Toast.LENGTH_LONG).show()
             //val intent = Intent(context, CartActivity::class.java)
             //startActivity(intent)

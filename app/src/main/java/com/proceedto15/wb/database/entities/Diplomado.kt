@@ -17,7 +17,8 @@ data class Diplomado (
     val fecha_fin: String?,
     val duracion: String?,
     val precio: Float,
-    val descripcion: String?
+    val descripcion: String?,
+    val url: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -29,6 +30,7 @@ data class Diplomado (
         parcel.readString(),
         parcel.readString(),
         parcel.readFloat(),
+        parcel.readString(),
         parcel.readString()
     )
 
@@ -43,6 +45,7 @@ data class Diplomado (
         parcel.writeString(duracion)
         parcel.writeFloat(precio)
         parcel.writeString(descripcion)
+        parcel.writeString(url)
     }
     override fun describeContents(): Int {
         return 0

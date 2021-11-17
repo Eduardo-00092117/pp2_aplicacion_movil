@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Diplomado
 import com.proceedto15.wb.database.entities.Servicio
@@ -32,6 +33,7 @@ class DiplomadosAdapter(var diplomados: List<Diplomado>, val clicklistener: (Dip
     inner class DiplomadoHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Diplomado, clickListener: (Diplomado) -> Unit) = with(itemView) {
+            Glide.with(this).load(item.url).into(itemView.findViewById(R.id.imageView2))
             itemView.findViewById<TextView>(R.id.diplomado_item_name).text = item.nombre
             itemView.findViewById<TextView>(R.id.diplomado_item_start_date).text = item.fecha_inicio
             itemView.findViewById<TextView>(R.id.diplomado_item_finish_date).text = item.fecha_fin

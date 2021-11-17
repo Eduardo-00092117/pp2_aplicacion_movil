@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proceedto15.wb.R
 import com.proceedto15.wb.database.entities.Servicio
 
@@ -33,6 +34,7 @@ class ServicesAdapter(var servicios: List<Servicio>, val totalTimeText: TextView
     inner class ServiceHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Servicio) = with(itemView) {
+            Glide.with(this).load(item.url).into(itemView.findViewById(R.id.imageView))
             itemView.findViewById<CheckBox>(R.id.service_item_check).text = item.nombre
             val view = itemView.findViewById<CheckBox>(R.id.service_item_check)
             itemView.findViewById<CheckBox>(R.id.service_item_check).setOnClickListener{clickListener(item, view)}

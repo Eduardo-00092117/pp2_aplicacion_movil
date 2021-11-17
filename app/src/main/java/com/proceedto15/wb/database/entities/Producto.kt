@@ -13,4 +13,5 @@ data class Producto (
     val precio: Float,
     val descripcion: String,
     val existencia: Int
+    ,val url: String
 )

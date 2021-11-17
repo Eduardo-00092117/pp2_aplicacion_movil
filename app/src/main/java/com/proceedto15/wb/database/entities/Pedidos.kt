@@ -11,5 +11,6 @@ data class Pedidos (
     val Qty: Int,
     val UnitPrice: Float,
     val TotalPrice: Float
+    ,val url: String
 
     )

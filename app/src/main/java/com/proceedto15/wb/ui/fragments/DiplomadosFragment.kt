@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proceedto15.wb.adapters.DiplomadosAdapter
@@ -41,7 +42,7 @@ class DiplomadosFragment : Fragment() {
         viewAdapter = DiplomadosAdapter(list) { matchItem: Diplomado -> onClicked(matchItem)}
         binding.recyclerDiplomados.apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
+            layoutManager = GridLayoutManager(this.context, 2)
             adapter = viewAdapter
         }
     }
