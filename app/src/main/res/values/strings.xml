@@ -56,4 +56,7 @@
     <string name="total_text">Total:</string>
     <string name="pay_now_text">Pagar ahora</string>
     <string name="title_activity_cash">CashActivity</string>
+    <string name="added_product">El producto fue agregado al carrito de compras</string>
+    <string name="reserved_products">Se ha reservado su pedido, revise su correo electrónico</string>
+    <string name="payment_product">El pago fue realizado con exito</string>
 </resources>
