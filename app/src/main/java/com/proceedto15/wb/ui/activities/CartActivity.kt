@@ -2,19 +2,18 @@ package com.proceedto15.wb.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.proceedto15.wb.Models.Ordenes
 import com.proceedto15.wb.R
 import com.proceedto15.wb.adapters.CartAdapter
 import com.proceedto15.wb.database.entities.Pedidos
 import com.proceedto15.wb.database.viewmodels.OrdenViewModel
 import com.proceedto15.wb.databinding.CartActivityBinding
+import com.proceedto15.wb.utilities.AppConstants.PAYMENT_KEY
 
 class CartActivity : AppCompatActivity() {
 
@@ -23,7 +22,6 @@ class CartActivity : AppCompatActivity() {
     private lateinit var ordenViewModel: OrdenViewModel
     private lateinit var ordenDetalleViewModel: OrdenViewModel
     private lateinit var _binding: CartActivityBinding
-    var ordenes = mutableListOf<Ordenes>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,11 +77,8 @@ class CartActivity : AppCompatActivity() {
                     Toast.makeText(this, "El carrito se encuentra vacio", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    ordenViewModel.deleteAllPedido()
-                    Toast.makeText(this, "Pago realizado con exito", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,PaymentActivity::class.java)
-                    //Log.d("Msg", findViewById<TextView>(R.id.total_cart).text.toString())
-                    intent.putExtra("value", findViewById<TextView>(R.id.total_cart).text.toString())
+                    intent.putExtra(PAYMENT_KEY, findViewById<TextView>(R.id.total_cart).text.toString())
                     startActivity(Intent(this, PaymentActivity::class.java))
                 }
             }
