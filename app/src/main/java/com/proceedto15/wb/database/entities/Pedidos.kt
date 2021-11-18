@@ -10,7 +10,6 @@ data class Pedidos (
     val PName: String,
     val Qty: Int,
     val UnitPrice: Float,
-    val TotalPrice: Float
-    ,val url: String
-
-    )
+    val TotalPrice: Float,
+    val url: String
+)
