@@ -20,4 +20,7 @@ interface ProductoDAO {
 
     @Query("DELETE FROM producto")
     suspend fun nukeTable()
+
+    @Query("UPDATE producto SET existencia = existencia - :amount WHERE id = :id")
+    suspend fun subtractExistence(id: Int, amount: Int)
 }

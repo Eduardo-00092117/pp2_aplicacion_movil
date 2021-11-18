@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.proceedto15.wb.database.RoomDB
-import com.proceedto15.wb.database.daos.PedidosDAO
 import com.proceedto15.wb.database.entities.*
 import com.proceedto15.wb.database.repositories.OrdenRepository
 import kotlinx.coroutines.Dispatchers
@@ -84,11 +83,19 @@ class OrdenViewModel(private val app: Application) : AndroidViewModel(app){
     // DELETES
 
     fun deleteOnePedido(id: Int) = viewModelScope.launch(Dispatchers.Main){
-        repository!!.deleteOnePedido(id)
+        repository.deleteOnePedido(id)
     }
 
-    fun deleteAllPedido() = viewModelScope.launch(Dispatchers.Main){
-        repository!!.deleteAllPedido()
+    fun subtractExistence(id: Int, amount: Int) = viewModelScope.launch(Dispatchers.IO){
+        repository.subtractExistence(id, amount)
+    }
+
+    fun updatePedido(id: Int, amount: Int) = viewModelScope.launch(Dispatchers.IO){
+        repository.updatePedido(id, amount)
+    }
+
+    fun deleteAllPedido() = viewModelScope.launch(Dispatchers.IO){
+        repository.deleteAllPedido()
     }
 
     // GETs

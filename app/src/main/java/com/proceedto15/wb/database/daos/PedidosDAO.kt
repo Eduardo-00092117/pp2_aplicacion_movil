@@ -27,4 +27,7 @@ interface PedidosDAO {
 
     @Query("DELETE FROM pedidos")
     suspend fun nukeTable()
+
+    @Query("UPDATE pedidos SET Qty = Qty + :amount WHERE id = :id")
+    suspend fun updatePedido(id: Int, amount: Int)
 }

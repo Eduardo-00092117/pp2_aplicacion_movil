@@ -58,6 +58,14 @@ class OrdenRepository (
     suspend fun insertHistorialVenta(historialVenta: HistorialVenta){
         HistorialVentaDAO.insert(historialVenta)
     }
+    @WorkerThread
+    suspend fun subtractExistence(id: Int, amount: Int){
+        ProductoDAO.subtractExistence(id, amount)
+    }
+    @WorkerThread
+    suspend fun updatePedido(id: Int, amount: Int){
+        PedidosDAO.updatePedido(id, amount)
+    }
 
     // GETs
 
